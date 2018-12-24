@@ -96,7 +96,7 @@ public class SignUpActivity extends Activity {
         usernameText = findViewById(R.id.usernameText);
         passwordText = findViewById(R.id.passwordText);
         nameText = findViewById(R.id.nameText);
-        lastNameText = findViewById(R.id.lastNameText);
+        lastNameText = findViewById(R.id.usernameText);
         phoneText = findViewById(R.id.phoneText);
         musicText = findViewById(R.id.musicText);
         emailText = findViewById(R.id.emailText);

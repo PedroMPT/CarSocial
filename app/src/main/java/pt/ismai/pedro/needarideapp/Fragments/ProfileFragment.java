@@ -10,16 +10,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.List;
 
@@ -33,9 +37,11 @@ import pt.ismai.pedro.needarideapp.R;
 public class ProfileFragment extends Fragment {
 
     //SETTING VARIABLES
-    EditText nameText,usernameText,emailText,phoneText,musicText;
+    EditText nameText,usernameText,emailText,phoneText,musicText,lastNameText;
     CircleImageView circleImageView;
     FloatingActionButton fab;
+    Button saveButton;
+    ImageView changePhoto;
 
 
     public ProfileFragment() {
@@ -51,12 +57,15 @@ public class ProfileFragment extends Fragment {
 
         //BINDING WITH LAYOUT
         nameText = view.findViewById(R.id.nameText);
-        usernameText =  view.findViewById(R.id.lastNameText);
+        lastNameText = view.findViewById(R.id.lastNameText);
+        usernameText =  view.findViewById(R.id.usernameText);
         emailText = view.findViewById(R.id.emailText);
         phoneText =  view.findViewById(R.id.phoneText);
         musicText =  view.findViewById(R.id.musicText);
         circleImageView =  view.findViewById(R.id.circleImageView);
         fab = view.findViewById(R.id.fab);
+        saveButton = view.findViewById(R.id.saveButton);
+        changePhoto = view.findViewById(R.id.changePhoto);
 
 
         Intent intent = getActivity().getIntent();
@@ -77,6 +86,7 @@ public class ProfileFragment extends Fragment {
                             for (ParseObject user : objects){
 
                                 final String nomeUtilizaddor = (String) user.get("name");
+                                final String ultimoNomeUtilizador = (String) user.get("last_name");
                                 final String utilizador = user.get("username").toString();
                                 final String phone = user.get("phone").toString();
                                 final String email = user.get("email").toString();
@@ -94,6 +104,7 @@ public class ProfileFragment extends Fragment {
                                             emailText.setText(email);
                                             phoneText.setText(phone);
                                             musicText.setText(musica);
+                                            lastNameText.setText(ultimoNomeUtilizador);
                                             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
                                             circleImageView.setImageBitmap(bitmap);
 
@@ -108,17 +119,71 @@ public class ProfileFragment extends Fragment {
 
         }
 
+        saveButton.setTranslationX(-1000f);
+        saveButton.setTranslationY(-1000f);
+        changePhoto.setTranslationX(-1000f);
+        changePhoto.setTranslationY(-1000f);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 nameText.setEnabled(true);
+                lastNameText.setEnabled(true);
                 usernameText.setEnabled(true);
                 emailText.setEnabled(true);
                 phoneText.setEnabled(true);
                 musicText.setEnabled(true);
 
+                saveButton.animate()
+                        .translationXBy(1000f)
+                        .translationYBy(1000f);
+                changePhoto.animate()
+                        .translationXBy(1000f)
+                        .translationYBy(1000f);
 
+
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ParseQuery<ParseUser> query = ParseUser.getQuery();
+                query.whereEqualTo("objectId",ParseUser.getCurrentUser());
+
+                query.getInBackground(ParseUser.getCurrentUser().getObjectId(), new GetCallback<ParseUser>() {
+                    @Override
+                    public void done(ParseUser user, ParseException e) {
+
+                        if (e == null){
+
+                            user.put("username",usernameText.getText().toString());
+                            user.put("name",nameText.getText().toString());
+                            user.put("last_name",lastNameText.getText().toString());
+                            user.put("email",emailText.getText().toString());
+                            user.put("music",musicText.getText().toString());
+                            user.put("phone",phoneText.getText().toString());
+
+                            user.saveInBackground(new SaveCallback() {
+                                @Override
+                                public void done(ParseException e) {
+
+                                    if (e == null){
+
+                                        FancyToast.makeText(getActivity(),"Registo alterado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                                    }else{
+
+                                        FancyToast.makeText(getActivity(),"Algo correu mal. Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                    }
+                                }
+                            });
+                        }
+
+
+                    }
+                });
             }
         });
 

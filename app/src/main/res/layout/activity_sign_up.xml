@@ -8,7 +8,7 @@
     tools:context=".Activities.SignUpActivity">
 
     <EditText
-        android:id="@+id/lastNameText"
+        android:id="@+id/usernameText"
         android:layout_width="184dp"
         android:layout_height="40dp"
         android:layout_alignEnd="@+id/imageView9"
@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/usernameText" />
 
     <EditText
         android:id="@+id/passwordText"

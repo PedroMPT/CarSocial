@@ -13,10 +13,14 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
+
+import java.util.List;
 
 import pt.ismai.pedro.needarideapp.Model.Car;
 import pt.ismai.pedro.needarideapp.R;
@@ -59,6 +63,41 @@ public class CarFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
         activeUser = intent.getStringExtra("objectId");
+
+        ParseQuery<Car> query = ParseQuery.getQuery("Car");
+        query.whereEqualTo("objectId",activeUser);
+
+        query.findInBackground(new FindCallback<Car>() {
+            @Override
+            public void done(List<Car> cars, ParseException e) {
+
+                if (e == null) {
+
+                    if (cars.size() > 0){
+
+                        for (Car car : cars){
+
+                            final String carBrand = car.brand();
+                            final String carModel = car.model();
+                            final String carSeats = car.seats();
+                            final String plate = car.plate();
+                            boolean canSmoke = car.canSmoke();
+                            boolean canTakePets = car.canTakePets();
+
+                            brandText.setText(carBrand);
+                            modelText.setText(carModel);
+                            seatsText.setText(carSeats);
+                            plateText.setText(plate);
+
+
+
+                        }
+                    }
+
+                }
+
+            }
+        });
 
         canSmoke.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
