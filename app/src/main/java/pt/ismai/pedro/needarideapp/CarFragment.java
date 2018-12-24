@@ -119,7 +119,7 @@ public class CarFragment extends Fragment {
 
                 validationMessage.append(".");
 
-                if (validationError){
+                if (validationError) {
 
                     Toast.makeText(getActivity(), validationMessage.toString(), Toast.LENGTH_SHORT).show();
                     return;
