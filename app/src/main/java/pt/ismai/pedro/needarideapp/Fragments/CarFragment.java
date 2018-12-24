@@ -1,4 +1,4 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Fragments;
 
 
 import android.content.Intent;
@@ -14,10 +14,12 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.parse.ParseException;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
+
+import pt.ismai.pedro.needarideapp.Model.Car;
+import pt.ismai.pedro.needarideapp.R;
 
 
 /**
@@ -25,6 +27,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
  */
 public class CarFragment extends Fragment {
 
+    //SETTING VARIABLES
     EditText brandText,modelText,seatsText,plateText;
     Switch canSmoke,canTakePets;
     Button saveButton;
@@ -45,6 +48,7 @@ public class CarFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_car,container,false);
 
+        //BINDING WITH LAYOUT
         brandText = view.findViewById(R.id.brandText);
         modelText = view.findViewById(R.id.modelText);
         seatsText = view.findViewById(R.id.seatsText);
@@ -128,8 +132,7 @@ public class CarFragment extends Fragment {
 
 
 
-
-                ParseObject car = new ParseObject("Car");
+                Car car = new Car();
 
                 car.put("brand",brandText.getText().toString());
                 car.put("model",modelText.getText().toString());

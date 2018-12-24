@@ -5,6 +5,7 @@
         <item name="android:windowBackground">@drawable/splash_backgroud</item>
         <item name="android:itemBackground">@color/colorAccent</item>
         <item name="android:actionMenuTextColor">@color/colorPrimaryDark</item>
+        <item name="android:statusBarColor"> @android:color/transparent</item>
 
     </style>
 

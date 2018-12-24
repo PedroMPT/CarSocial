@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SignUpActivity" />
         <activity
-            android:name=".UserActivity"
+            android:name=".Activities.UserActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".MyProfileActivity"
+        <activity android:name=".Activities.MyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
     </application>
 

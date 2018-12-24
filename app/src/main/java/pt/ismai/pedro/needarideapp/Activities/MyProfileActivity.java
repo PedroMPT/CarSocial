@@ -1,4 +1,4 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Activities;
 
 import android.content.Intent;
 import android.os.Build;
@@ -11,8 +11,12 @@ import android.os.Bundle;
 
 import com.parse.ParseUser;
 
+import pt.ismai.pedro.needarideapp.Adapters.PageAdapter;
+import pt.ismai.pedro.needarideapp.R;
+
 public class MyProfileActivity extends AppCompatActivity {
 
+    //SETTING VARIABLES
     TabLayout tabLayout;
     TabItem perfilTab,carTab;
     ViewPager viewPager;
@@ -23,20 +27,24 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+        //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
+        //BINDING WITH LAYOUT
         tabLayout = findViewById(R.id.tab_layout);
         perfilTab = findViewById(R.id.pefilTab);
         carTab = findViewById(R.id.carTab);
         viewPager = findViewById(R.id.viewPager);
 
+        //GETTING THE TABS FROM PAGE_ADAPTER AND SETTING IN THE VIEWPAGER
         pageAdapter = new PageAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
 
+        //ADD A LISTENER TO THE VIEW PAGER FOR TABS CHANGE
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        //ADD A LISTENER FOR THE TAB_LAYOUT TO CHANGE THE BACKGROUND COLOR AND THE STATUS_BAR
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -70,13 +78,19 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void executeActivity(Class<?> subActivity){
+
+        Intent intent = new Intent(this,subActivity);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        Intent profileIntent = new Intent(getApplicationContext(),UserActivity.class);
-        profileIntent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-        startActivity(profileIntent);
-        finish();
+        executeActivity(UserActivity.class);
         return true;
     }
 }

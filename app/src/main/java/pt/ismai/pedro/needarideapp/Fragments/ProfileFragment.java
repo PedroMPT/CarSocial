@@ -1,14 +1,16 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Fragments;
 
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.parse.FindCallback;
@@ -22,6 +24,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pt.ismai.pedro.needarideapp.R;
 
 
 /**
@@ -29,8 +32,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 public class ProfileFragment extends Fragment {
 
-    TextView nameText,usernameText,emailText,phoneText,musicText;
+    //SETTING VARIABLES
+    EditText nameText,usernameText,emailText,phoneText,musicText;
     CircleImageView circleImageView;
+    FloatingActionButton fab;
 
 
     public ProfileFragment() {
@@ -44,15 +49,19 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile,container,false);
 
+        //BINDING WITH LAYOUT
         nameText = view.findViewById(R.id.nameText);
         usernameText =  view.findViewById(R.id.lastNameText);
         emailText = view.findViewById(R.id.emailText);
         phoneText =  view.findViewById(R.id.phoneText);
         musicText =  view.findViewById(R.id.musicText);
         circleImageView =  view.findViewById(R.id.circleImageView);
+        fab = view.findViewById(R.id.fab);
+
 
         Intent intent = getActivity().getIntent();
         String activeUser = intent.getStringExtra("objectId");
+
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId",activeUser);
         if (activeUser != null){
@@ -97,10 +106,21 @@ public class ProfileFragment extends Fragment {
                 }
             });
 
-
-
         }
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                nameText.setEnabled(true);
+                usernameText.setEnabled(true);
+                emailText.setEnabled(true);
+                phoneText.setEnabled(true);
+                musicText.setEnabled(true);
+
+
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

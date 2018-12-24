@@ -1,4 +1,4 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -30,21 +30,25 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import pt.ismai.pedro.needarideapp.R;
+
 public class SignUpActivity extends Activity {
 
+    //SETTING VARIABLES
     CardView signup;
     ImageView arrowImage, profilePhoto;
     EditText usernameText, passwordText, nameText, phoneText,musicText, emailText, passwordConfirm,lastNameText;
     ParseUser user = new ParseUser();
     ParseFile file;
 
+    //GETTING THE PHOTO FROM THE PHONE MEDIA STORE
     public void getPhoto(){
 
         Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, 1);
     }
 
-
+    //CONVERTING THE RECEIVED PHOTO TO A BITMAP, COMPRESSING. CONVERTING AGAIN TO A BYTE AND SAVING A PARSE FILE IN THE USER CLASS
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         SignUpActivity.super.onActivityResult(requestCode,resultCode,data);
 
@@ -87,7 +91,8 @@ public class SignUpActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        
+
+        //BINDING WITH LAYOUT
         usernameText = findViewById(R.id.usernameText);
         passwordText = findViewById(R.id.passwordText);
         nameText = findViewById(R.id.nameText);
@@ -100,7 +105,7 @@ public class SignUpActivity extends Activity {
         profilePhoto = findViewById(R.id.profilePhoto);
         signup = findViewById(R.id.signUp);
 
-
+        //INTENT TO THE LOGIN_ACTIVITY
         arrowImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +115,7 @@ public class SignUpActivity extends Activity {
             }
         });
 
+        //ASKING FOR PREMISSION
         profilePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +137,7 @@ public class SignUpActivity extends Activity {
             }
         });
 
+        //VALIDATION AND USER SIGN UP
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,9 +228,7 @@ public class SignUpActivity extends Activity {
 
                             FancyToast.makeText(SignUpActivity.this,"Registo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
 
-                            Intent intent = new Intent(getApplicationContext(),UserActivity.class);
-                            intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-                            startActivity(intent);
+                            executeActivity(UserActivity.class);
 
                         }else{
 
@@ -271,5 +276,12 @@ public class SignUpActivity extends Activity {
 
         return e;
 
+    }
+    private void executeActivity(Class<?> subActivity){
+
+        Intent intent = new Intent(this,subActivity);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
     }
 }

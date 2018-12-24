@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/back"
     android:backgroundTintMode="src_over"
-    tools:context=".LoginActivity">
+    tools:context=".Activities.LoginActivity">
 
 
     <TextView

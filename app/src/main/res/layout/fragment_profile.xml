@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProfileFragment">
+    tools:context=".Fragments.ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,7 +15,7 @@
         android:background="@color/colorAccent"
         tools:context=".ProfileActivity">
 
-        <TextView
+        <EditText
             android:id="@+id/lastNameText"
             android:layout_width="300dp"
             android:layout_height="40dp"
@@ -27,6 +27,7 @@
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_name"
             android:ems="10"
+            android:enabled="false"
             android:hint=" Username"
             android:inputType="textPersonName"
             android:padding="8dp"
@@ -36,7 +37,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
-        <TextView
+        <EditText
             android:id="@+id/nameText"
             android:layout_width="184dp"
             android:layout_height="40dp"
@@ -48,6 +49,7 @@
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_face"
             android:ems="10"
+            android:enabled="false"
             android:hint=" Nome"
             android:inputType="textPersonName"
             android:padding="8dp"
@@ -57,7 +59,7 @@
             app:layout_constraintStart_toEndOf="@+id/profilePhoto"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/emailText"
             android:layout_width="300dp"
             android:layout_height="40dp"
@@ -69,6 +71,7 @@
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_email"
             android:ems="10"
+            android:enabled="false"
             android:hint=" E-mail"
             android:inputType="textEmailSubject"
             android:padding="8dp"
@@ -78,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lastNameText" />
 
-        <TextView
+        <EditText
             android:id="@+id/phoneText"
             android:layout_width="300dp"
             android:layout_height="40dp"
@@ -90,6 +93,7 @@
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_phone"
             android:ems="10"
+            android:enabled="false"
             android:hint=" Telemóvel"
             android:inputType="phone"
             android:padding="8dp"
@@ -99,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
 
-        <TextView
+        <EditText
             android:id="@+id/musicText"
             android:layout_width="300dp"
             android:layout_height="60dp"
@@ -111,6 +115,7 @@
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_music"
             android:ems="10"
+            android:enabled="false"
             android:hint=" Músicos Preferidos"
             android:inputType="textMultiLine"
             android:padding="8dp"
@@ -131,7 +136,7 @@
             app:civ_border_width="3dp"
             app:layout_constraintBottom_toTopOf="@+id/lastNameText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.109"
+            app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />

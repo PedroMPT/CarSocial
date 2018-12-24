@@ -1,8 +1,11 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import pt.ismai.pedro.needarideapp.Fragments.CarFragment;
+import pt.ismai.pedro.needarideapp.Fragments.ProfileFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
 

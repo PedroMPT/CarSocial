@@ -1,4 +1,4 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,33 +15,37 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
+import pt.ismai.pedro.needarideapp.R;
+
 //import com.parse.facebook.ParseFacebookUtils;
 
 
 public class LoginActivity extends Activity {
 
-    CardView login, facebookLogin;
-    EditText usernameText, passwordText;
-    TextView signUpText;
-
-    /*@Override
+      /*@Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
     }*/
 
+    //SETTING VARIABLES
+    CardView login, facebookLogin;
+    EditText usernameText, passwordText;
+    TextView signUpText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //BINDING WITH LAYOUT
         login = findViewById(R.id.login);
         usernameText = findViewById(R.id.usernameText);
         passwordText = findViewById(R.id.passwordText);
         facebookLogin = findViewById(R.id.facebookLogin);
-
         signUpText = findViewById(R.id.signUpText);
+
+        //PASSING INTENT TO THE SIGN UP ACTIVITY
         signUpText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,13 +57,12 @@ public class LoginActivity extends Activity {
             }
         });
 
-
+        // SETTING LISTENER TO LOGIN
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (usernameText.getText().toString().matches("") || passwordText.getText().toString().matches("")) {
-
 
                    FancyToast.makeText(LoginActivity.this,"Username e Password Obrigatórios",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
 
@@ -71,20 +74,19 @@ public class LoginActivity extends Activity {
 
                             if(user != null){
 
-                                Intent intent = new Intent(getApplicationContext(),UserActivity.class);
-                                intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-                                startActivity(intent);
+                               executeActivity(UserActivity.class);
                             }
                             else{
 
                                 FancyToast.makeText(LoginActivity.this,"O utlizador não está registado.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-
                             }
                         }
                     });
                 }
             }
         });
+
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
         /*final Collection<String> permissions = Arrays.asList("public_profile", "email");
 
@@ -107,6 +109,12 @@ public class LoginActivity extends Activity {
             }
         });*/
 
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+    }
+    private void executeActivity(Class<?> subActivity){
+
+        Intent intent = new Intent(this,subActivity);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
     }
 }

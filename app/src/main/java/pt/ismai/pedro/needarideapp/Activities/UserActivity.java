@@ -1,4 +1,4 @@
-package pt.ismai.pedro.needarideapp;
+package pt.ismai.pedro.needarideapp.Activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -32,11 +32,12 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import pt.ismai.pedro.needarideapp.R;
 
 public class UserActivity extends AppCompatActivity  {
 
+    //SETTING VARIABLES
     private DrawerLayout drawerLayout;
-
     CircleImageView circleImageView;
     TextView nome;
     Toolbar toolbar;
@@ -48,20 +49,23 @@ public class UserActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_user);
 
 
+        //BINDING WITH LAYOUT
         circleImageView = findViewById(R.id.circleImageView);
         nome = findViewById(R.id.nome);
-
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         offerATrip = findViewById(R.id.offer);
-
         final NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.bringToFront();
 
+
+        navigationView.bringToFront();
         setSupportActionBar(toolbar);
 
+        //GETTING THE CURRENT USER
         Intent intent = getIntent();
         final String activeUser = intent.getStringExtra("objectId");
+
+        // QUERY TO THE CURRENT USER CLASS
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("objectId",activeUser);
 
@@ -111,6 +115,7 @@ public class UserActivity extends AppCompatActivity  {
         toggle.syncState();
 
 
+        //NAVIGATING THE HAMBURGUER MENU
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -119,11 +124,7 @@ public class UserActivity extends AppCompatActivity  {
 
                     case R.id.nav_my_profile:
 
-                        Intent profileIntent = new Intent(getApplicationContext(),MyProfileActivity.class);
-                        profileIntent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-                        startActivity(profileIntent);
-                        finish();
-
+                        executeActivity(MyProfileActivity.class);
                         break;
 
                     case R.id.nav_notifications:
@@ -137,11 +138,8 @@ public class UserActivity extends AppCompatActivity  {
                     case R.id.nav_logout:
 
                         ParseUser.logOut();
-                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                        startActivity(intent);
                         Toast.makeText(UserActivity.this, "Sessão Terminada", Toast.LENGTH_SHORT).show();
-                        finish();
-
+                        executeActivity(LoginActivity.class);
                         break;
                 }
                 drawerLayout.closeDrawer(Gravity.START);
@@ -149,6 +147,7 @@ public class UserActivity extends AppCompatActivity  {
             }
         });
 
+        //QUERY THE CURRENT USER FOR THE ASSOCIATED CAR
         offerATrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -176,9 +175,7 @@ public class UserActivity extends AppCompatActivity  {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
 
-                                                Intent carIntent = new Intent(getApplicationContext(),MyProfileActivity.class);
-                                                carIntent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-                                                startActivity(carIntent);
+                                               executeActivity(MyProfileActivity.class);
 
                                             }
                                         })
@@ -201,6 +198,14 @@ public class UserActivity extends AppCompatActivity  {
         });
 
 
+    }
+
+    private void executeActivity(Class<?> subActivity){
+
+        Intent intent = new Intent(this,subActivity);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
     }
 
     @Override
