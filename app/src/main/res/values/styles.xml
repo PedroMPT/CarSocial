@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="SplashTheme" parent="android:Theme.Material.NoActionBar" >
+        <item name="android:windowBackground">@drawable/splash_backgroud</item>
+        <item name="android:itemBackground">@color/colorAccent</item>
+        <item name="android:actionMenuTextColor">@color/colorPrimaryDark</item>
+
+    </style>
+
+ </resources>
