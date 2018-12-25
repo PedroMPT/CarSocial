@@ -30,8 +30,9 @@
         <activity
             android:name=".Activities.UserActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".Activities.MyProfileActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
+        <activity
+            android:name=".Activities.MyProfileActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
     </application>
 
 </manifest>

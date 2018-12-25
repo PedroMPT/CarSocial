@@ -8,31 +8,46 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorAccent">
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="95dp"
+            android:layout_height="26dp"
             android:layout_below="@+id/brandText"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="85dp"
-            android:layout_marginTop="-87dp"
-            android:text="Marca" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="Marca"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="95dp"
+            android:layout_height="26dp"
             android:layout_alignStart="@+id/canSmoke"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="-31dp"
-            android:layout_marginTop="131dp"
-            android:text="Modelo" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:text="Modelo"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/brandText" />
 
         <EditText
             android:id="@+id/brandText"
@@ -40,10 +55,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
         <EditText
             android:id="@+id/modelText"
@@ -51,10 +71,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <EditText
             android:id="@+id/seatsText"
@@ -62,28 +87,51 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/brandText"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginBottom="309dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
         <Switch
             android:id="@+id/canSmoke"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="212dp"
+            android:layout_height="31dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="-178dp"
-            android:layout_marginBottom="269dp"
-            android:layout_toEndOf="@+id/modelText" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/modelText"
+            android:text="Fumador"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.278"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plateText" />
 
         <Switch
             android:id="@+id/canTakePets"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="212dp"
+            android:layout_height="39dp"
             android:layout_alignStart="@+id/canSmoke"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="-1dp"
-            android:layout_marginBottom="221dp" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Possível levar Animais"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.278"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/canSmoke" />
 
         <EditText
             android:id="@+id/plateText"
@@ -91,10 +139,51 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="88dp"
-            android:layout_marginBottom="163dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.281"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="95dp"
+            android:layout_height="26dp"
+            android:layout_alignEnd="@+id/canTakePets"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:text="Lugares"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modelText" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="95dp"
+            android:layout_height="26dp"
+            android:layout_alignBottom="@+id/canTakePets"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@+id/saveButton"
+            android:text="Matrícula"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.17"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seatsText" />
 
         <Button
             android:id="@+id/saveButton"
@@ -102,40 +191,35 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="144dp"
-            android:layout_marginBottom="39dp"
-            android:text="Guardar" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/canTakePets"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="207dp"
-            android:layout_marginEnd="1dp"
-            android:text="Lugares" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/canTakePets"
-            android:layout_marginStart="1dp"
-            android:layout_marginBottom="-1dp"
-            android:layout_toEndOf="@+id/saveButton"
-            android:text="Matrícula" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Guardar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.986" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/saveButton"
-            android:layout_toEndOf="@+id/seatsText"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/colorPrimary"
             android:clickable="true"
-            android:src="@drawable/ic_mode_edit_black_24dp" />
+            android:src="@drawable/ic_mode_edit_black_24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.808"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/canTakePets"
+            app:layout_constraintVertical_bias="0.331" />
 
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </FrameLayout>

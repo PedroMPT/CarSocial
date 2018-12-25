@@ -3,6 +3,7 @@ package pt.ismai.pedro.needarideapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -28,7 +27,6 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.List;
 
-import pt.ismai.pedro.needarideapp.Model.Car;
 import pt.ismai.pedro.needarideapp.R;
 
 
@@ -38,15 +36,14 @@ import pt.ismai.pedro.needarideapp.R;
 public class CarFragment extends Fragment {
 
     //SETTING VARIABLES
-    RelativeLayout relativeLayout;
+    ConstraintLayout constraintLayout;
     EditText brandText,modelText,seatsText,plateText;
     Switch canSmoke,canTakePets;
-    Button saveButton;
-    boolean validationError = false;
     boolean can_smoke;
     boolean can_pets;
     String activeUser;
     FloatingActionButton fab;
+    Button saveButton;
 
 
     public CarFragment() {
@@ -73,57 +70,18 @@ public class CarFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_car,container,false);
 
         //BINDING WITH LAYOUT
-        relativeLayout = view.findViewById(R.id.relativeLayout);
+        constraintLayout = view.findViewById(R.id.constraintLayout);
         brandText = view.findViewById(R.id.brandText);
         modelText = view.findViewById(R.id.modelText);
         seatsText = view.findViewById(R.id.seatsText);
         plateText = view.findViewById(R.id.plateText);
         canSmoke = view.findViewById(R.id.canSmoke);
         canTakePets = view.findViewById(R.id.canTakePets);
-        saveButton = view.findViewById(R.id.saveButton);
         fab = view.findViewById(R.id.fab);
+        saveButton = view.findViewById(R.id.saveButton);
 
         Intent intent = getActivity().getIntent();
         activeUser = intent.getStringExtra("objectId");
-
-        final ParseQuery<Car> query = ParseQuery.getQuery("Car");
-        query.whereEqualTo("user_id",ParseUser.getCurrentUser());
-
-        query.findInBackground(new FindCallback<Car>() {
-            @Override
-            public void done(List<Car> cars, ParseException e) {
-
-                if (e == null){
-
-                    if (cars.size() > 0){
-
-                        for (Car car : cars){
-
-                            brandText.setText(car.brand());
-                            modelText.setText(car.model());
-                            seatsText.setText(car.seats());
-                            plateText.setText(car.plate());
-                            if (car.canSmoke()){
-
-                                canSmoke.setChecked(true);
-                            }else{
-
-                                canSmoke.setChecked(false);
-                            }
-
-                            if (car.canTakePets()){
-
-                                canTakePets.setChecked(true);
-                            }else{
-
-                                canTakePets.setChecked(false);
-                            }
-                        }
-
-                    }
-                }
-            }
-        });
 
         canSmoke.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -153,6 +111,50 @@ public class CarFragment extends Fragment {
             }
         });
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Car");
+        query.whereEqualTo("user_id",ParseUser.getCurrentUser());
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> cars, ParseException e) {
+
+                if (e == null){
+
+                    if (cars.size() > 0){
+
+                        for (ParseObject car : cars){
+
+                            brandText.setText(car.get("brand").toString());
+                            modelText.setText(car.get("model").toString());
+                            seatsText.setText(car.get("seats").toString());
+                            plateText.setText(car.get("plate").toString());
+
+                            if (car.get("can_smoke").equals(true)){
+
+                                canSmoke.setChecked(true);
+
+                            }else{
+
+                                canSmoke.setChecked(false);
+
+                            }
+
+                            if (car.get("can_take_pets").equals(true)){
+
+                                canTakePets.setChecked(true);
+
+                            }else{
+
+                                canTakePets.setChecked(false);
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        });
+
         saveButton.setTranslationX(-1000f);
         saveButton.setTranslationY(-1000f);
 
@@ -167,11 +169,11 @@ public class CarFragment extends Fragment {
             }
         });
 
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                boolean validationError = false;
                 StringBuilder validationMessage = new StringBuilder("Por favor, indique");
 
                 if (isEmpty(brandText)){
@@ -179,106 +181,79 @@ public class CarFragment extends Fragment {
                     validationError = true;
                     validationMessage.append(" a marca,");
                 }
+
                 if (isEmpty(modelText)){
 
                     validationError = true;
                     validationMessage.append(" o modelo,");
                 }
-
-                if (isEmpty(seatsText)){
-
-                    validationError = true;
-                    validationMessage.append(" os lugares,");
-                }
-
-                if (isEmpty(seatsText)){
+                if (isEmpty(plateText)){
 
                     validationError = true;
                     validationMessage.append(" a matrícula,");
                 }
+                if (isEmpty(seatsText)){
 
+                    validationError = true;
+                    validationMessage.append(" e os lugares");
+                }
                 validationMessage.append(".");
 
-                if (validationError) {
+                if (validationError){
 
-                    Toast.makeText(getActivity(), validationMessage.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), validationMessage.toString(), Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                ParseObject car = new ParseObject("Car");
 
-                if (car.get("user_id") == null){
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Car");
+                query.whereEqualTo("user_id", ParseUser.getCurrentUser());
 
-                    car.put("brand",brandText.getText().toString());
-                    car.put("model",modelText.getText().toString());
-                    car.put("seats",seatsText.getText().toString());
-                    car.put("plate",plateText.getText().toString());
-                    car.put("can_smoke",can_smoke);
-                    car.put("can_take_pets",can_pets);
-                    car.put("user_id",ParseUser.getCurrentUser());
+                query.findInBackground(new FindCallback<ParseObject>() {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e) {
 
-                    car.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
+                        if (objects.size() > 0){
 
-                            if (e == null){
+                            ParseQuery<ParseObject> queryUpdate = ParseQuery.getQuery("Car");
+                            queryUpdate.whereEqualTo("user_id",ParseUser.getCurrentUser());
 
-                                FancyToast.makeText(getActivity(),"Registo de veículo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                            }
-                            else{
+                            queryUpdate.getFirstInBackground( new GetCallback<ParseObject>() {
+                                @Override
+                                public void done(ParseObject car, ParseException e) {
 
-                                FancyToast.makeText(getActivity(),"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                            }
+                                    car.put("brand",brandText.getText().toString());
+                                    car.put("model",modelText.getText().toString());
+                                    car.put("seats",seatsText.getText().toString());
+                                    car.put("plate",plateText.getText().toString());
+                                    car.put("can_smoke",can_smoke);
+                                    car.put("can_take_pets",can_pets);
+                                    car.put("user_id",ParseUser.getCurrentUser());
 
+                                    car.saveInBackground(new SaveCallback() {
+                                        @Override
+                                        public void done(ParseException e) {
 
-                        }
-                    });
+                                            if (e == null){
 
-                }else{
+                                                FancyToast.makeText(getActivity(),"Os dados foram atualizados",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                                            }else{
 
-                    ParseQuery<Car> query = ParseQuery.getQuery("Car");
+                                                FancyToast.makeText(getActivity(),"Algo correu mal. Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                                            }
 
-                    query.getInBackground(ParseUser.getCurrentUser().getObjectId(), new GetCallback<Car>() {
-
-
-                        @Override
-                        public void done(Car car, ParseException e) {
-
-                            if (e == null){
-
-                                car.put("brand",brandText.getText().toString());
-                                car.put("model",modelText.getText().toString());
-                                car.put("seats",seatsText.getText().toString());
-                                car.put("plate",plateText.getText().toString());
-                                car.put("can_smoke",can_smoke);
-                                car.put("can_take_pets",can_pets);
-                                car.put("user_id",ParseUser.getCurrentUser());
-
-                                car.saveInBackground(new SaveCallback() {
-                                    @Override
-                                    public void done(ParseException e) {
-
-                                        if (e == null){
-
-                                            FancyToast.makeText(getActivity(),"Registo de veículo alterado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                                         }
-                                        else{
-
-                                            FancyToast.makeText(getActivity(),"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                                        }
-
-
-                                    }
-                                });
+                                    });
+                                }
+                            });
 
 
-                            }
+                        }else{
+
+                            saveObject();
                         }
-                    });
-
-                }
-
-
+                    }
+                });
 
             }
         });
@@ -296,6 +271,35 @@ public class CarFragment extends Fragment {
 
             return true;
         }
+    }
+
+    public void saveObject(){
+
+        ParseObject carInfo = new ParseObject("Car");
+
+        carInfo.put("brand",brandText.getText().toString());
+        carInfo.put("model",modelText.getText().toString());
+        carInfo.put("seats",seatsText.getText().toString());
+        carInfo.put("plate",plateText.getText().toString());
+        carInfo.put("can_smoke",can_smoke);
+        carInfo.put("can_take_pets",can_pets);
+        carInfo.put("user_id",ParseUser.getCurrentUser());
+
+        carInfo.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+                if (e == null){
+
+                    FancyToast.makeText(getActivity(),"Dados do carro registados",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                }else{
+
+                    FancyToast.makeText(getActivity(),"Algo correu mal. Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                }
+            }
+        });
+
+
     }
 
 }

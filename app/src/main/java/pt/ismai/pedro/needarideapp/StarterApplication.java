@@ -41,7 +41,6 @@ public class StarterApplication extends Application {
 
 
         ParseUser.enableAutomaticUser();
-        ParseObject.registerSubclass(Car.class);
 
         ParseACL defaultACL = new ParseACL();
         defaultACL.setPublicReadAccess(true);
