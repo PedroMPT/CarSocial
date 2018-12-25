@@ -93,10 +93,10 @@ public class SignUpActivity extends Activity {
         setContentView(R.layout.activity_sign_up);
 
         //BINDING WITH LAYOUT
-        usernameText = findViewById(R.id.usernameText);
+        usernameText = findViewById(R.id.lastNameText);
         passwordText = findViewById(R.id.passwordText);
         nameText = findViewById(R.id.nameText);
-        lastNameText = findViewById(R.id.usernameText);
+        lastNameText = findViewById(R.id.lastNameText);
         phoneText = findViewById(R.id.phoneText);
         musicText = findViewById(R.id.musicText);
         emailText = findViewById(R.id.emailText);

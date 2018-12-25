@@ -22,9 +22,9 @@ public class MainActivity extends Activity {
             @Override
             public void run() {
 
-             ParseUser currentUser = ParseUser.getCurrentUser();
+             String token = ParseUser.getCurrentUser().getSessionToken();
 
-                if (currentUser != null){
+                if (token != null){
 
                     executeActivity(UserActivity.class);
 

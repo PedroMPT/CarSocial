@@ -40,7 +40,7 @@ public class LoginActivity extends Activity {
 
         //BINDING WITH LAYOUT
         login = findViewById(R.id.login);
-        usernameText = findViewById(R.id.usernameText);
+        usernameText = findViewById(R.id.lastNameText);
         passwordText = findViewById(R.id.passwordText);
         facebookLogin = findViewById(R.id.facebookLogin);
         signUpText = findViewById(R.id.signUpText);

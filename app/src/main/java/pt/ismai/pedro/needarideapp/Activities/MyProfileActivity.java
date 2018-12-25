@@ -1,6 +1,7 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
@@ -52,18 +53,15 @@ public class MyProfileActivity extends AppCompatActivity {
                 if (tab.getPosition() == 1) {
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MyProfileActivity.this,
                             R.color.colorPrimaryDark));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(MyProfileActivity.this,
-                                R.color.colorPrimaryDark));
-                    }
+                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#40C4FF"));
+                    tabLayout.setSelectedTabIndicatorGravity((int) (5 * getResources().getDisplayMetrics().density));
 
                 } else {
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MyProfileActivity.this,
                             R.color.colorPrimary));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        getWindow().setStatusBarColor(ContextCompat.getColor(MyProfileActivity.this,
-                                android.R.color.darker_gray));
-                    }
+                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#40C4FF"));
+                    tabLayout.setSelectedTabIndicatorGravity((int) (5 * getResources().getDisplayMetrics().density));
+
                 }
             }
 

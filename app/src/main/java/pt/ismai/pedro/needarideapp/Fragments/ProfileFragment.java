@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment {
     CircleImageView circleImageView;
     FloatingActionButton fab;
     Button saveButton;
-    ImageView changePhoto;
 
 
     public ProfileFragment() {
@@ -65,7 +64,6 @@ public class ProfileFragment extends Fragment {
         circleImageView =  view.findViewById(R.id.circleImageView);
         fab = view.findViewById(R.id.fab);
         saveButton = view.findViewById(R.id.saveButton);
-        changePhoto = view.findViewById(R.id.changePhoto);
 
 
         Intent intent = getActivity().getIntent();
@@ -121,8 +119,6 @@ public class ProfileFragment extends Fragment {
 
         saveButton.setTranslationX(-1000f);
         saveButton.setTranslationY(-1000f);
-        changePhoto.setTranslationX(-1000f);
-        changePhoto.setTranslationY(-1000f);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,10 +134,6 @@ public class ProfileFragment extends Fragment {
                 saveButton.animate()
                         .translationXBy(1000f)
                         .translationYBy(1000f);
-                changePhoto.animate()
-                        .translationXBy(1000f)
-                        .translationYBy(1000f);
-
 
             }
         });

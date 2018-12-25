@@ -22,7 +22,7 @@
             android:layout_alignEnd="@+id/imageView9"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="8dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_name"
@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameText" />
+            app:layout_constraintTop_toBottomOf="@+id/lastNameText" />
 
         <EditText
             android:id="@+id/nameText"
@@ -45,7 +45,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
             android:layout_marginTop="84dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginEnd="28dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_face"
             android:ems="10"
@@ -55,8 +55,8 @@
             android:padding="8dp"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.285"
-            app:layout_constraintStart_toEndOf="@+id/profilePhoto"
+            app:layout_constraintHorizontal_bias="0.813"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
@@ -66,8 +66,8 @@
             android:layout_alignEnd="@+id/imageView9"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="156dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="28dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_face"
             android:ems="10"
@@ -77,9 +77,9 @@
             android:padding="8dp"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.285"
-            app:layout_constraintStart_toEndOf="@+id/profilePhoto"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.813"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
         <EditText
             android:id="@+id/emailText"
@@ -88,7 +88,7 @@
             android:layout_alignEnd="@+id/imageView9"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_email"
@@ -110,7 +110,7 @@
             android:layout_alignEnd="@+id/imageView9"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="#11000000"
             android:drawableLeft="@drawable/ic_action_phone"
@@ -120,7 +120,7 @@
             android:inputType="phone"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emailText" />
 
@@ -142,23 +142,23 @@
             android:inputType="textMultiLine"
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneText" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
-            android:layout_width="129dp"
-            android:layout_height="129dp"
+            android:layout_width="119dp"
+            android:layout_height="117dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="68dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="3dp"
-            app:layout_constraintBottom_toTopOf="@+id/usernameText"
+            app:layout_constraintBottom_toTopOf="@+id/lastNameText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.105"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
@@ -197,23 +197,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/musicText"
             app:layout_constraintVertical_bias="0.065" />
-
-        <ImageView
-            android:id="@+id/changePhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/colorPrimary"
-            android:src="@drawable/ic_add_circle_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.291"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.305" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>
