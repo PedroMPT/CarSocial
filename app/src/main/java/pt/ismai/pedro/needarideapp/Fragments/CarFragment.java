@@ -3,6 +3,7 @@ package pt.ismai.pedro.needarideapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -32,6 +35,7 @@ import pt.ismai.pedro.needarideapp.R;
 public class CarFragment extends Fragment {
 
     //SETTING VARIABLES
+    RelativeLayout relativeLayout;
     EditText brandText,modelText,seatsText,plateText;
     Switch canSmoke,canTakePets;
     Button saveButton;
@@ -39,11 +43,27 @@ public class CarFragment extends Fragment {
     boolean can_smoke;
     boolean can_pets;
     String activeUser;
+    FloatingActionButton fab;
 
 
     public CarFragment() {
         // Required empty public constructor
     }
+
+    public void hideOrNotToHide(RelativeLayout relativeLayout){
+
+
+        for (int i = 0 ; i < relativeLayout.getChildCount();i++){
+
+            View v = relativeLayout.getChildAt(i);
+
+           v.setVisibility(View.INVISIBLE);
+
+        }
+
+    }
+
+
 
 
     @Override
@@ -53,6 +73,7 @@ public class CarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_car,container,false);
 
         //BINDING WITH LAYOUT
+        relativeLayout = view.findViewById(R.id.relativeLayout);
         brandText = view.findViewById(R.id.brandText);
         modelText = view.findViewById(R.id.modelText);
         seatsText = view.findViewById(R.id.seatsText);
@@ -60,44 +81,10 @@ public class CarFragment extends Fragment {
         canSmoke = view.findViewById(R.id.canSmoke);
         canTakePets = view.findViewById(R.id.canTakePets);
         saveButton = view.findViewById(R.id.saveButton);
+        fab = view.findViewById(R.id.fab);
 
         Intent intent = getActivity().getIntent();
         activeUser = intent.getStringExtra("objectId");
-
-        ParseQuery<Car> query = ParseQuery.getQuery("Car");
-        query.whereEqualTo("objectId",activeUser);
-
-        query.findInBackground(new FindCallback<Car>() {
-            @Override
-            public void done(List<Car> cars, ParseException e) {
-
-                if (e == null) {
-
-                    if (cars.size() > 0){
-
-                        for (Car car : cars){
-
-                            final String carBrand = car.brand();
-                            final String carModel = car.model();
-                            final String carSeats = car.seats();
-                            final String plate = car.plate();
-                            boolean canSmoke = car.canSmoke();
-                            boolean canTakePets = car.canTakePets();
-
-                            brandText.setText(carBrand);
-                            modelText.setText(carModel);
-                            seatsText.setText(carSeats);
-                            plateText.setText(plate);
-
-
-
-                        }
-                    }
-
-                }
-
-            }
-        });
 
         canSmoke.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -109,9 +96,7 @@ public class CarFragment extends Fragment {
                 }
                 else{
                     can_smoke = false;
-
                 }
-
             }
         });
 
@@ -125,11 +110,27 @@ public class CarFragment extends Fragment {
                 }
                 else{
                     can_pets = false;
-
                 }
+            }
+        });
+
+        saveButton.setTranslationX(-1000f);
+        saveButton.setTranslationY(-1000f);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                saveButton.animate()
+                        .translationXBy(1000f)
+                        .translationYBy(1000f);
 
             }
         });
+
+        ParseQuery<Car> query = ParseQuery.getQuery("Car");
+        query.whereEqualTo("objectId",ParseUser.getCurrentUser());
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,9 +168,6 @@ public class CarFragment extends Fragment {
                     Toast.makeText(getActivity(), validationMessage.toString(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
 
                 Car car = new Car();
 
