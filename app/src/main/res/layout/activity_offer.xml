@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorAccent"
+    tools:context=".Activities.OfferActivity">
+
+    <CalendarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ru.slybeaver.slycalendarview.SlyCalendarView
+            android:id="@+id/slyCalendarView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:backgroundColor="#000000"
+            app:firstMonday="true"
+            app:headerColor="#ff0000"
+            app:selectedColor="#0000ff"
+            app:textColor="#00ff00"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="43dp" />
+
+
+    </CalendarView>
+
+
+
+
+</FrameLayout>

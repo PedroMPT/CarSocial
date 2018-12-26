@@ -33,6 +33,8 @@
         <activity
             android:name=".Activities.MyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".Activities.OfferActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

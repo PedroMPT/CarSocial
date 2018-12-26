@@ -162,6 +162,8 @@ public class UserActivity extends AppCompatActivity  {
                         if (e == null){
 
                             if (cars.size() > 0){
+                                Intent intent = new Intent(getApplicationContext(),OfferActivity.class);
+                                startActivity(intent);
 
                                 FancyToast.makeText(UserActivity.this,"Boa!! Tens Um carro associado",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                             }
