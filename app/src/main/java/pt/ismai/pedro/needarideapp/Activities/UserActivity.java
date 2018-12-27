@@ -155,46 +155,43 @@ public class UserActivity extends AppCompatActivity  {
                 ParseQuery<ParseObject> query = ParseQuery.getQuery("Car");
                 query.whereEqualTo("user_id",ParseUser.getCurrentUser());
 
-                query.findInBackground(new FindCallback<ParseObject>() {
-                    @Override
-                    public void done(List<ParseObject> cars, ParseException e) {
+                query.findInBackground((cars, e) -> {
 
-                        if (e == null){
+                    if (e == null){
 
-                            if (cars.size() > 0){
-                                Intent intent = new Intent(getApplicationContext(),OfferActivity.class);
-                                startActivity(intent);
+                        if (cars.size() > 0){
+                            Intent intent1 = new Intent(getApplicationContext(),OfferActivity.class);
+                            startActivity(intent1);
 
-                                FancyToast.makeText(UserActivity.this,"Boa!! Tens Um carro associado",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                            }
-                            else{
-
-                                new AlertDialog.Builder(UserActivity.this)
-
-                                        .setTitle("Alerta de Carro")
-                                        .setMessage("Necessita de um carro para oferecer viagens. Deseja associar?")
-                                        .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                               executeActivity(MyProfileActivity.class);
-
-                                            }
-                                        })
-                                        .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                                dialog.cancel();
-                                            }
-                                        })
-                                        .show();
-
-                            }
+                            FancyToast.makeText(UserActivity.this,"Boa!! Tens Um carro associado",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                         }
+                        else{
 
+                            new AlertDialog.Builder(UserActivity.this)
 
+                                    .setTitle("Alerta de Carro")
+                                    .setMessage("Necessita de um carro para oferecer viagens. Deseja associar?")
+                                    .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                           executeActivity(MyProfileActivity.class);
+
+                                        }
+                                    })
+                                    .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+
+                                            dialog.cancel();
+                                        }
+                                    })
+                                    .show();
+
+                        }
                     }
+
+
                 });
             }
         });

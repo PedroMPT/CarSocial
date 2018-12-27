@@ -34,7 +34,9 @@
             android:name=".Activities.MyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
         <activity android:name=".Activities.OfferActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter><action android:name="android.intent.action.SEARCH"/> </intent-filter>
+        </activity>
     </application>
 
 </manifest>
