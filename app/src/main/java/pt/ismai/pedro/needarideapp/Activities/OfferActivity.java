@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.mancj.materialsearchbar.MaterialSearchBar;
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -82,7 +83,7 @@ public class OfferActivity extends AppCompatActivity {
 
     private void startSearch(String text) {
 
-        getName(text);
+        getName(text.toLowerCase());
 
 
     }
@@ -116,15 +117,22 @@ public class OfferActivity extends AppCompatActivity {
         List<String> result = new ArrayList<>();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("City");
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
+
+        query.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(ParseObject object, ParseException e) {
+            public void done(List<ParseObject> cities, ParseException e) {
 
-                if (e == null && object != null){
+                if (e == null){
 
-                    String nome = (String) object.get(String.valueOf(String.valueOf("Name").matches(name)));
-                    result.add(nome);
+                    for (ParseObject city : cities){
 
+                        String nome = (String) city.get("Name");
+                        if (nome.matches(name)){
+
+                            result.add(nome);
+                        }
+
+                    }
                 }
             }
         });
