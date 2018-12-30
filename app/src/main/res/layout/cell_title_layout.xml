@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bgContent"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
+
+    <!-- LEFT TITLE PART -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="155dp"
+        android:layout_weight="3"
+        android:background="@color/bgTitleLeft"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/title_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"
+            android:text="@string/price_mock"/>
+
+        <TextView
+            android:id="@+id/title_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="@string/delivery_time_mock"/>
+
+        <TextView
+            android:id="@+id/title_date_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/title_time_label"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:text="@string/delivery_date_mock"/>
+
+    </RelativeLayout>
+
+    <!-- RIGHT TITLE PART -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/bgTitleRight"
+        android:paddingBottom="20dp"
+        android:paddingEnd="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingStart="15dp"
+        android:paddingTop="10dp">
+
+        <!-- PERCURSO -->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="55dp"
+            android:layout_height="43dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/image"/>
+
+        <TextView
+            android:id="@+id/avatar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/avatar"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/avatar"
+            android:layout_toRightOf="@+id/avatar"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:text="@string/avatar_name"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            />
+
+
+        <!-- PARTE INFERIOR -->
+
+        <ImageView
+            android:id="@+id/title_from_to_dots"
+            style="@style/TitleBadgeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/from_to_purple"/>
+
+        <TextView
+            android:id="@+id/title_from_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/title_from_to_dots"
+            android:layout_marginTop="-5dp"
+            android:layout_toEndOf="@+id/title_from_to_dots"
+            android:layout_toRightOf="@+id/title_from_to_dots"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="@string/content_from1_mock"/>
+
+        <ImageView
+            android:id="@+id/title_from_to_dots_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/title_from_address"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="21dp"
+            android:layout_toEndOf="@+id/title_from_to_dots"
+            android:layout_toRightOf="@+id/title_from_to_dots"
+            android:src="@color/contentDividerLine" />
+
+        <TextView
+            android:id="@+id/title_to_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_from_to_dots_divider"
+            android:layout_toEndOf="@id/title_from_to_dots"
+            android:layout_toRightOf="@id/title_from_to_dots"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            android:text="@string/content_to1_mock"/>
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

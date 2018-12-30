@@ -52,7 +52,10 @@
         <activity
             android:name=".Activities.StopsActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".Activities.PriceActivity"
+        <activity
+            android:name=".Activities.PriceActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".Activities.ListOfRidesActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
     </application>
 

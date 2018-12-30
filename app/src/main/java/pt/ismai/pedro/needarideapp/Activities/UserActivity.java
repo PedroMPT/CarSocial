@@ -41,7 +41,7 @@ public class UserActivity extends AppCompatActivity  {
     CircleImageView circleImageView;
     TextView nome;
     Toolbar toolbar;
-    CardView offerATrip;
+    CardView offerATrip,find;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -55,6 +55,7 @@ public class UserActivity extends AppCompatActivity  {
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         offerATrip = findViewById(R.id.offer);
+        find = findViewById(R.id.find);
         final NavigationView navigationView = findViewById(R.id.nav_view);
 
 
@@ -193,6 +194,14 @@ public class UserActivity extends AppCompatActivity  {
 
 
                 });
+            }
+        });
+
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                executeActivity(ListOfRidesActivity.class);
             }
         });
 
