@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    >
+    android:visibility="gone">
 
     <!-- content header line -->
     <RelativeLayout
@@ -74,11 +74,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/head_image_left_text"
-            android:layout_alignLeft="@id/head_image_left_text"
             android:layout_alignStart="@id/head_image_left_text"
-            android:paddingLeft="20dp"
+            android:layout_alignLeft="@id/head_image_left_text"
+            android:layout_marginStart="17dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="1dp"
             android:paddingStart="20dp"
-            android:text="@string/requests_count_badge" />
+            android:paddingLeft="20dp"
+            android:text="@string/requests_count_badge"
+            android:textColor="@color/date_color" />
 
         <TextView
             android:id="@+id/head_image_right_text"
@@ -99,9 +103,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/head_image_right_text"
-            android:layout_alignLeft="@id/head_image_right_text"
             android:layout_alignStart="@id/head_image_right_text"
-            android:text="@string/weight_badge" />
+            android:layout_alignLeft="@id/head_image_right_text"
+            android:layout_marginStart="29dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/weight_badge"
+            android:textColor="@color/date_color" />
 
         <TextView
             android:id="@+id/head_image_center_text"
@@ -283,7 +291,7 @@
                     android:layout_alignLeft="@id/content_to_badge"
                     android:layout_alignStart="@id/content_to_badge"
                     android:layout_below="@id/content_to_badge"
-                    android:text="@string/content_to1_mock"
+                    android:text="@string/content_to_mock"
                     android:textColor="@color/mainTextColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
