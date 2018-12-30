@@ -33,10 +33,27 @@
         <activity
             android:name=".Activities.MyProfileActivity"
             android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
-        <activity android:name=".Activities.OfferActivity"
+        <activity
+            android:name=".Activities.OfferActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter><action android:name="android.intent.action.SEARCH"/> </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
         </activity>
+        <activity
+            android:name=".Activities.FromActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity
+            android:name=".Activities.TripDataActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity
+            android:name=".Activities.TimeTripActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity
+            android:name=".Activities.StopsActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+        <activity android:name=".Activities.PriceActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
     </application>
 
 </manifest>

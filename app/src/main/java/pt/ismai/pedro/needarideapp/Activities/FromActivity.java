@@ -12,27 +12,25 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pt.ismai.pedro.needarideapp.R;
 
-public class OfferActivity extends AppCompatActivity {
+public class FromActivity extends AppCompatActivity {
 
     MaterialSearchBar searchBar;
     List<String> cidades;
-    String passingValue;
+    String receivedValue;
+    String whereFromValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offer);
-
+        setContentView(R.layout.activity_from);
         searchBar = findViewById(R.id.searchBar);
-
-        searchBar.setHint("Para onde vamos");
+        searchBar.setHint("Onde te vamos buscar?");
         loadSugestHint();
 
         searchBar.addTextChangeListener(new TextWatcher() {
@@ -51,9 +49,9 @@ public class OfferActivity extends AppCompatActivity {
 
                         suggest.add(search);
 
-                    }
-                    searchBar.setLastSuggestions(suggest);
                 }
+                searchBar.setLastSuggestions(suggest);
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -65,8 +63,6 @@ public class OfferActivity extends AppCompatActivity {
             @Override
             public void onSearchStateChanged(boolean enabled) {
 
-                String s = enabled ? "enabled" : "disabled";
-                Toast.makeText(getApplicationContext(), "Search " + s, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -74,8 +70,8 @@ public class OfferActivity extends AppCompatActivity {
             public void onSearchConfirmed(CharSequence text) {
 
                 startSearch(text.toString());
-                passingValue = searchBar.getText();
-                executeActivity(FromActivity.class);
+                whereFromValue = searchBar.getText();
+                executeActivity(TripDataActivity.class);
 
             }
 
@@ -121,8 +117,8 @@ public class OfferActivity extends AppCompatActivity {
 
                     for (ParseObject city : cities){
 
-                       String cidade = (String) city.get("Name");
-                       cidades.add(String.valueOf(cidade));
+                        String cidade = (String) city.get("Name");
+                        cidades.add(String.valueOf(cidade));
 
                     }
                 }
@@ -162,13 +158,14 @@ public class OfferActivity extends AppCompatActivity {
     }
     private void executeActivity(Class<?> subActivity){
 
-        Intent intent = new Intent(this,subActivity);
-        intent.putExtra("whereTo",passingValue);
-        startActivity(intent);
+        Intent intent = this.getIntent();
+        String receivedValue = intent.getStringExtra("whereTo");
+
+        Intent sendIntent = new Intent(this,subActivity);
+        sendIntent.putExtra("whereToVal",receivedValue);
+        sendIntent.putExtra("whereFrom",whereFromValue);
+        startActivity(sendIntent);
         finish();
     }
 
 }
-
-
-
