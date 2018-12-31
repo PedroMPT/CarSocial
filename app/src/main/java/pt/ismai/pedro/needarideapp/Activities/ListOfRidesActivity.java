@@ -23,13 +23,15 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class ListOfRidesActivity extends AppCompatActivity {
 
-    final ArrayList<Bitmap> avatar = new ArrayList<>();
-    final ArrayList<String> avatarName = new ArrayList<>();
+    //final ArrayList<Bitmap> avatar = new ArrayList<>();
+    //final ArrayList<String> avatarName = new ArrayList<>();
     final ArrayList<String> price = new ArrayList<>();
     final ArrayList<String> time = new ArrayList<>();
     final ArrayList<String> rideDate = new ArrayList<>();
     final ArrayList<String> rideFrom = new ArrayList<>();
     final ArrayList<String> rideTo = new ArrayList<>();
+
+    RecyclerView recyclerView;
 
 
     @Override
@@ -37,9 +39,8 @@ public class ListOfRidesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_rides);
 
+        recyclerView = findViewById(R.id.mt_recycler);
         initRideInfo();
-        initiateRecyclerView();
-
     }
 
     private void initRideInfo(){
@@ -54,63 +55,61 @@ public class ListOfRidesActivity extends AppCompatActivity {
                     for (ParseObject ride : rides){
 
                         price.add((String) ride.get("price"));
-                        time.add((String) ride.get("time"));
+                        time.add((String) ride.get("start"));
                         rideDate.add((String) ride.get("data"));
                         rideFrom.add((String) ride.get("from"));
                         rideTo.add((String) ride.get("to"));
 
-                    }
-                }
+                        ParseObject rideU = new ParseObject("Ride");
 
-            }
-        });
+                        ParseQuery<ParseUser> queryU = ParseUser.getQuery();
+                        queryU.whereEqualTo("objectId",rideU.get("user_id"));
 
-        ParseObject ride = new ParseObject("Ride");
-
-        ParseQuery<ParseUser> queryU = ParseUser.getQuery();
-        queryU.whereEqualTo("objectId",ride.get("user_id"));
-
-        queryU.findInBackground(new FindCallback<ParseUser>() {
-            @Override
-            public void done(List<ParseUser> users, ParseException e) {
-
-                if (e == null){
-
-                    for (ParseUser user: users){
-
-                        String firstName = (String) user.get("name");
-                        String lastName = (String) user.get("lat_name");
-                        avatarName.add(firstName + " " + lastName);
-
-                        ParseFile file = (ParseFile) user.get("profile_photo");
-
-                        file.getDataInBackground(new GetDataCallback() {
+                        queryU.findInBackground(new FindCallback<ParseUser>() {
                             @Override
-                            public void done(byte[] data, ParseException e) {
+                            public void done(List<ParseUser> users, ParseException e) {
 
-                                Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
-                                avatar.add(bitmap);
+                                if (e == null){
+
+                                    for (ParseUser user: users){
+
+                                        String firstName = (String) user.get("name");
+                                        String lastName = (String) user.get("lat_name");
+                                        //avatarName.add(firstName + " " + lastName);
+
+                                        ParseFile file = (ParseFile) user.get("profile_photo");
+
+                                        file.getDataInBackground(new GetDataCallback() {
+                                            @Override
+                                            public void done(byte[] data, ParseException e) {
+
+                                                Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
+                                                //avatar.add(bitmap);
+                                            }
+                                        });
+
+                                    }
+                                }
                             }
                         });
 
                     }
                 }
+                initiateRecyclerView();
+
             }
+
         });
+
 
 
     }
 
-
-
     private void initiateRecyclerView(){
-
-        RecyclerView recyclerView = findViewById(R.id.mt_recycler);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),avatar,avatarName,price,time,rideDate,rideFrom,rideTo);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),price,time,rideDate,rideFrom,rideTo);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
-
-
     }
 
 

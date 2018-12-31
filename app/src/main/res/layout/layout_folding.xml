@@ -5,7 +5,12 @@
     android:layout_height="wrap_content"
     folding-cell:additionalFlipsCount="2"
     folding-cell:animationDuration="1300"
-    folding-cell:cameraHeight="30">
+    folding-cell:cameraHeight="30"
+    android:id="@+id/folding_cell"
+    folding-cell:backSideColor="@color/bgBackSideColor"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
     <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->
     <include layout="@layout/cell_content_layout" />

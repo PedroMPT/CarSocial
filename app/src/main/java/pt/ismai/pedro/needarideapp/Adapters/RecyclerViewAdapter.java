@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ramotion.foldingcell.FoldingCell;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -20,8 +22,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
     // Definir as Variáveis do conteúdo
-    private ArrayList<Bitmap> avatar;
-    private ArrayList<String> avatarName;
+    //private ArrayList<Bitmap> avatar;
+    //private ArrayList<String> avatarName;
     private ArrayList<String> price;
     private ArrayList<String> time;
     private ArrayList<String> rideDate;
@@ -32,10 +34,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     // Criar o construtor
 
 
-    public RecyclerViewAdapter(Context context, ArrayList<Bitmap> avatar, ArrayList<String> avatarName, ArrayList<String> price, ArrayList<String> time, ArrayList<String> rideDate, ArrayList<String> rideFrom, ArrayList<String> rideTo) {
+    public RecyclerViewAdapter(Context context, ArrayList<String> price, ArrayList<String> time, ArrayList<String> rideDate, ArrayList<String> rideFrom, ArrayList<String> rideTo) {
         inflater = LayoutInflater.from(context);
-        this.avatar = avatar;
-        this.avatarName = avatarName;
+        //this.avatar = avatar;
+        //this.avatarName = avatarName;
         this.price = price;
         this.time = time;
         this.rideDate = rideDate;
@@ -60,8 +62,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.title_time.setText(time.get(i));
         viewHolder.title_from_address.setText(rideFrom.get(i));
         viewHolder.title_to_address.setText(rideTo.get(i));
-        viewHolder.avatar_name.setText(avatarName.get(i));
-        viewHolder.avatar.setImageBitmap(avatar.get(i));
+        //viewHolder.avatar_name.setText(avatarName.get(i));
+        //viewHolder.avatar.setImageBitmap(avatar.get(i));
+
+        viewHolder.foldingCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                viewHolder.foldingCell.toggle(false);
+            }
+        });
     }
 
     @Override
@@ -75,6 +85,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout leftSideRelativeLayout,rightTitleRelativeLayout;
         TextView title_price,title_time,title_date,avatar_name,title_from_address,title_to_address;
         CircleImageView avatar;
+        FoldingCell foldingCell;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -91,6 +102,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
            title_from_address = itemView.findViewById(R.id.title_from_address);
            title_to_address = itemView.findViewById(R.id.title_to_address);
            avatar = itemView.findViewById(R.id.avatar);
+
+           foldingCell = itemView.findViewById(R.id.folding_cell);
 
 
         }
