@@ -75,11 +75,11 @@ public class LoginActivity extends Activity {
                             if(user != null){
 
                                executeActivity(UserActivity.class);
-                            }
-                            else{
-
+                            }else {
                                 FancyToast.makeText(LoginActivity.this,"O utlizador não está registado.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                            }
+
+                                }
+
                         }
                     });
                 }

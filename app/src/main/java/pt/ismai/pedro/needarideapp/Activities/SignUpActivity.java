@@ -227,12 +227,26 @@ public class SignUpActivity extends Activity {
                         if (e == null){
 
                             FancyToast.makeText(SignUpActivity.this,"Registo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-
                             executeActivity(UserActivity.class);
 
                         }else{
 
-                            FancyToast.makeText(SignUpActivity.this,"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                            switch (e.getCode()){
+
+                                case ParseException.USERNAME_TAKEN:
+                                    FancyToast.makeText(SignUpActivity.this,"O utilizador já existe.",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                    break;
+
+                                case ParseException.EMAIL_TAKEN:
+                                    FancyToast.makeText(SignUpActivity.this,"O email já existe",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                    break;
+
+                                default:
+                                    FancyToast.makeText(SignUpActivity.this,"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                    break;
+
+                            }
+
                         }
                     }
                 });
