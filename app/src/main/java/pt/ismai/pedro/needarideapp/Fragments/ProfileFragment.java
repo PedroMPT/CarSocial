@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -39,6 +40,7 @@ public class ProfileFragment extends Fragment {
     //SETTING VARIABLES
     EditText nameText,usernameText,emailText,phoneText,musicText,lastNameText;
     CircleImageView circleImageView;
+    TextView fullNameText;
     FloatingActionButton fab;
     Button saveButton;
 
@@ -64,6 +66,7 @@ public class ProfileFragment extends Fragment {
         circleImageView =  view.findViewById(R.id.circleImageView);
         fab = view.findViewById(R.id.fab);
         saveButton = view.findViewById(R.id.saveButton);
+        fullNameText = view.findViewById(R.id.fullNameText);
 
 
         Intent intent = getActivity().getIntent();
@@ -105,6 +108,7 @@ public class ProfileFragment extends Fragment {
                                             lastNameText.setText(ultimoNomeUtilizador);
                                             Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
                                             circleImageView.setImageBitmap(bitmap);
+                                            fullNameText.setText(nomeUtilizaddor + " " + ultimoNomeUtilizador);
 
                                         }
                                     }

@@ -29,34 +29,35 @@
         <activity android:name=".Activities.SignUpActivity" />
         <activity
             android:name=".Activities.UserActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".Activities.MyProfileActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme"
+            />
         <activity
             android:name=".Activities.OfferActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activities.FromActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.TripDataActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.TimeTripActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.StopsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.PriceActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar" />
+            android:theme="@style/AppTheme" />
         <activity android:name=".Activities.ListOfRidesActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"></activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

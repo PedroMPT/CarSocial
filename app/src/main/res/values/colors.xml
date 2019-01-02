@@ -15,6 +15,9 @@
     <color name="titleBadgeText">#adafb1</color>
     <color name="mainTextColor">#343d43</color>
     <color name="btnRequest">#ffbf12</color>
+    <color name="toolbar">#03a9f4</color>
+    <color name="item_fragment">#67daff</color>
+    <color name="status_bar">#007ac1</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

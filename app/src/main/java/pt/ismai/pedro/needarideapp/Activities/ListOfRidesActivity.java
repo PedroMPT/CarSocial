@@ -8,12 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.parse.FindCallback;
-import com.parse.GetDataCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,15 +21,17 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class ListOfRidesActivity extends AppCompatActivity {
 
-    //final ArrayList<Bitmap> avatar = new ArrayList<>();
-    //final ArrayList<String> avatarName = new ArrayList<>();
+    final ArrayList<Bitmap> avatar = new ArrayList<>();
+    final ArrayList<String> avatarName = new ArrayList<>();
     final ArrayList<String> price = new ArrayList<>();
     final ArrayList<String> time = new ArrayList<>();
     final ArrayList<String> rideDate = new ArrayList<>();
     final ArrayList<String> rideFrom = new ArrayList<>();
     final ArrayList<String> rideTo = new ArrayList<>();
+    final ArrayList<ParseFile> avatarFile = new ArrayList<>();
 
     RecyclerView recyclerView;
+    Bitmap bitmap;
 
 
     @Override
@@ -45,7 +45,9 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
     private void initRideInfo(){
 
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Ride");
+        query.include("user_id");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> rides, ParseException e) {
@@ -54,59 +56,44 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
                     for (ParseObject ride : rides){
 
-                        price.add((String) ride.get("price"));
+                        price.add(ride.get("price") + "€");
                         time.add((String) ride.get("start"));
                         rideDate.add((String) ride.get("data"));
                         rideFrom.add((String) ride.get("from"));
                         rideTo.add((String) ride.get("to"));
 
-                        ParseObject rideU = new ParseObject("Ride");
+                        ParseObject user = ride.getParseObject("user_id");
+                        String fullName = user.get("name") + " " + user.get("last_name");
+                        avatarName.add(fullName);
 
-                        ParseQuery<ParseUser> queryU = ParseUser.getQuery();
-                        queryU.whereEqualTo("objectId",rideU.get("user_id"));
+                        byte[] file;
+                        try {
+                            file = user.getParseFile("profile_photo").getData();
+                            bitmap = BitmapFactory.decodeByteArray(file,0,file.length);
+                            avatar.add(bitmap);
+                        } catch (ParseException e1) {
+                            e1.printStackTrace();
+                        }
 
-                        queryU.findInBackground(new FindCallback<ParseUser>() {
-                            @Override
-                            public void done(List<ParseUser> users, ParseException e) {
+                        initiateRecyclerView();
 
-                                if (e == null){
-
-                                    for (ParseUser user: users){
-
-                                        String firstName = (String) user.get("name");
-                                        String lastName = (String) user.get("lat_name");
-                                        //avatarName.add(firstName + " " + lastName);
-
-                                        ParseFile file = (ParseFile) user.get("profile_photo");
-
-                                        file.getDataInBackground(new GetDataCallback() {
-                                            @Override
-                                            public void done(byte[] data, ParseException e) {
-
-                                                Bitmap bitmap = BitmapFactory.decodeByteArray(data,0,data.length);
-                                                //avatar.add(bitmap);
-                                            }
-                                        });
-
-                                    }
-                                }
-                            }
-                        });
 
                     }
+
+
                 }
-                initiateRecyclerView();
+
 
             }
 
-        });
 
+        });
 
 
     }
 
     private void initiateRecyclerView(){
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),price,time,rideDate,rideFrom,rideTo);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),avatar,avatarName, price,time,rideDate,rideFrom,rideTo);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager( new LinearLayoutManager(this));

@@ -16,6 +16,7 @@
         android:paddingTop="7dp">
 
         <TextView
+            android:id="@+id/content_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -24,6 +25,7 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/content_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -111,26 +113,6 @@
             android:text="@string/weight_badge"
             android:textColor="@color/date_color" />
 
-        <TextView
-            android:id="@+id/head_image_center_text"
-            style="@style/ContentImageBadgeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/head_image"
-            android:layout_centerHorizontal="true"
-            android:paddingBottom="10dp"
-            android:text="@string/pledge_mock"
-            android:textColor="@color/date_color" />
-
-        <TextView
-            style="@style/ContentImageBadgeTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/head_image_center_text"
-            android:layout_alignLeft="@id/head_image_center_text"
-            android:layout_alignStart="@id/head_image_center_text"
-            android:text="@string/pledge_badge" />
-
 
     </RelativeLayout>
 
@@ -160,13 +142,13 @@
                 android:layout_marginBottom="5dp"
                 android:text="@string/sender_badge" />
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/content_avatar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_below="@id/content_avatar_title"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image"/>
+                android:src="@drawable/image" />
 
             <TextView
                 android:id="@+id/content_name_view"

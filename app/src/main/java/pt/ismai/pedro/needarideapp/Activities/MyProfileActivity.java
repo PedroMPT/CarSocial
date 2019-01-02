@@ -1,7 +1,9 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
@@ -53,14 +55,12 @@ public class MyProfileActivity extends AppCompatActivity {
                 if (tab.getPosition() == 1) {
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MyProfileActivity.this,
                             R.color.colorPrimaryDark));
-                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#40C4FF"));
-                    tabLayout.setSelectedTabIndicatorGravity((int) (5 * getResources().getDisplayMetrics().density));
+                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FBFCFC"));
 
                 } else {
                     tabLayout.setBackgroundColor(ContextCompat.getColor(MyProfileActivity.this,
                             R.color.colorPrimary));
-                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#40C4FF"));
-                    tabLayout.setSelectedTabIndicatorGravity((int) (5 * getResources().getDisplayMetrics().density));
+                    tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FBFCFC"));
 
                 }
             }
