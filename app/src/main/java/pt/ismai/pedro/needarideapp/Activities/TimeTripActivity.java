@@ -49,6 +49,7 @@ public class TimeTripActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         starTimePicker = findViewById(R.id.startTimePicker);
         endTimePicker = findViewById(R.id.endTimePicker);

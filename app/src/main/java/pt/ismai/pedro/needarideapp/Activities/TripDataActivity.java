@@ -39,6 +39,7 @@ public class TripDataActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         textView = findViewById(R.id.textView);
         calendar = findViewById(R.id.calendar);

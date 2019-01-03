@@ -33,6 +33,7 @@ public class FromActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         searchBar = findViewById(R.id.searchBar);
         searchBar.setHint("Onde te vamos buscar?");

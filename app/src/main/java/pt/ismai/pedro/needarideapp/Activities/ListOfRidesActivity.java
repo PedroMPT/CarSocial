@@ -43,6 +43,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         recyclerView = findViewById(R.id.mt_recycler);
         initRideInfo();

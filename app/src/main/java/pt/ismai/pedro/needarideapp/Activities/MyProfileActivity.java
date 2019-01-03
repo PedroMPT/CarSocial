@@ -33,6 +33,7 @@ public class MyProfileActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //BINDING WITH LAYOUT
         tabLayout = findViewById(R.id.tab_layout);

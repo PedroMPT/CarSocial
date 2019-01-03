@@ -35,6 +35,7 @@ public class PriceActivity extends AppCompatActivity {
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         priceText = findViewById(R.id.priceText);
         button = findViewById(R.id.button);
