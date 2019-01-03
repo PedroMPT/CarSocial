@@ -29,6 +29,11 @@ public class FromActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_from);
+
+        //SETTING TOOLBAR
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         searchBar = findViewById(R.id.searchBar);
         searchBar.setHint("Onde te vamos buscar?");
         loadSugestHint();
@@ -166,6 +171,13 @@ public class FromActivity extends AppCompatActivity {
         sendIntent.putExtra("whereFrom",whereFromValue);
         startActivity(sendIntent);
         finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        executeActivity(OfferActivity.class);
+        return true;
     }
 
 }

@@ -37,6 +37,11 @@
     <string name="content_to_mock">Maia - Lugar do Espido, Via Norte</string>
     <string name="avatar_name">Fernando</string>
     <string name="title_activity_main2">Main2Activity</string>
-
+    <string name="earlyGo">A que horas nos encontramos de manhã?</string>
+    <string name="lateGo">Por que horas combinamos a saída?</string>
+    <string name="calendar_selection">Quando vais?</string>
+    <string name="pickup">Queres partir de onde?</string>
+    <string name="leave">Para onde vais?</string>
+    <string name="price">10</string>
 
 </resources>

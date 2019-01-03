@@ -30,6 +30,10 @@ public class OfferActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer);
 
+        //SETTING TOOLBAR
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         searchBar = findViewById(R.id.searchBar);
 
         searchBar.setHint("Para onde vamos");
@@ -166,6 +170,13 @@ public class OfferActivity extends AppCompatActivity {
         intent.putExtra("whereTo",passingValue);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        executeActivity(UserActivity.class);
+        return true;
     }
 
 }

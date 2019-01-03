@@ -32,8 +32,7 @@
             android:theme="@style/MainTheme" />
         <activity
             android:name=".Activities.MyProfileActivity"
-            android:theme="@style/AppTheme"
-            />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.OfferActivity"
             android:theme="@style/AppTheme">
@@ -51,12 +50,12 @@
             android:name=".Activities.TimeTripActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.StopsActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".Activities.PriceActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.ListOfRidesActivity"
+        <activity
+            android:name=".Activities.ListOfRidesActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.SeatsActivity"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -1,6 +1,8 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,7 +29,17 @@ public class TripDataActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Locale locale = new Locale("pt", "PT");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
         setContentView(R.layout.activity_trip_data);
+
+        //SETTING TOOLBAR
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         textView = findViewById(R.id.textView);
         calendar = findViewById(R.id.calendar);
         button = findViewById(R.id.button);
@@ -86,5 +98,11 @@ public class TripDataActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        executeActivity(FromActivity.class);
+        return true;
+    }
 
 }

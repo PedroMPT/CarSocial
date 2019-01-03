@@ -1,5 +1,6 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -9,9 +10,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,6 @@ public class ListOfRidesActivity extends AppCompatActivity {
     final ArrayList<String> rideDate = new ArrayList<>();
     final ArrayList<String> rideFrom = new ArrayList<>();
     final ArrayList<String> rideTo = new ArrayList<>();
-    final ArrayList<ParseFile> avatarFile = new ArrayList<>();
 
     RecyclerView recyclerView;
     Bitmap bitmap;
@@ -39,6 +39,11 @@ public class ListOfRidesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_rides);
 
+
+        //SETTING TOOLBAR
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         recyclerView = findViewById(R.id.mt_recycler);
         initRideInfo();
     }
@@ -48,6 +53,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Ride");
         query.include("user_id");
+        query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> rides, ParseException e) {
@@ -56,7 +62,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
                     for (ParseObject ride : rides){
 
-                        price.add(ride.get("price") + "€");
+                        price.add((String) ride.get("price"));
                         time.add((String) ride.get("start"));
                         rideDate.add((String) ride.get("data"));
                         rideFrom.add((String) ride.get("from"));
@@ -97,6 +103,16 @@ public class ListOfRidesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        Intent intent = new Intent(this,UserActivity.class);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
+        return true;
     }
 
 

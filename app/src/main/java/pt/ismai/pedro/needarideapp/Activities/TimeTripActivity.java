@@ -8,12 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.SimpleTimeZone;
 
 import pt.ismai.pedro.needarideapp.R;
 
@@ -51,6 +46,10 @@ public class TimeTripActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_trip);
 
+        //SETTING TOOLBAR
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         starTimePicker = findViewById(R.id.startTimePicker);
         endTimePicker = findViewById(R.id.endTimePicker);
         button = findViewById(R.id.button);
@@ -62,6 +61,8 @@ public class TimeTripActivity extends AppCompatActivity {
 
         hourE = c.get(Calendar.HOUR);
         minuteE = c.get(Calendar.MINUTE);
+        starTimePicker.setIs24HourView(true);
+        endTimePicker.setIs24HourView(true);
 
         starTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
@@ -91,12 +92,17 @@ public class TimeTripActivity extends AppCompatActivity {
                 startTime = String.valueOf(hourS) + ":" + String.valueOf(minuteS);
                 endTime = String.valueOf(hourE) + ":" + String.valueOf(minuteE);
 
-                executeActivity(StopsActivity.class);
+                executeActivity(SeatsActivity.class);
             }
         });
 
 
     }
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        executeActivity(TripDataActivity.class);
+        return true;
+    }
 
 }
