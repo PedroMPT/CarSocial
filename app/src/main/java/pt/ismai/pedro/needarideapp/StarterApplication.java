@@ -14,10 +14,7 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseACL;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
-
-import pt.ismai.pedro.needarideapp.Model.Car;
 //import com.parse.facebook.ParseFacebookUtils;
 
 
