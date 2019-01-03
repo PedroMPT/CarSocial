@@ -64,14 +64,43 @@ public class TripDataActivity extends AppCompatActivity {
 
                 dataViagem = day + "-" + month + "-" + year;
 
-                textView.setText(day + "-" + month + "-" + year);
+                textView.setText(dataViagem);
 
             }
 
             @Override
             public void onDateRangeSelected(Calendar startDate, Calendar endDate) {
 
-                textView.setText(startDate.getTime().toString() + endDate.getTime().toString());
+                String day;
+                String endDay;
+                SimpleDateFormat dayFormat = new SimpleDateFormat("dd",Locale.getDefault());
+
+                String month;
+                String endMonth;
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MM",Locale.getDefault());
+
+                String year;
+                String endYear;
+                SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy",Locale.getDefault());
+
+                day = dayFormat.format(startDate.getTime());
+                month = monthFormat.format(startDate.getTime());
+                year = yearFormat.format(startDate.getTime());
+
+                endDay = dayFormat.format(endDate.getTime());
+                endMonth = monthFormat.format(endDate.getTime());
+                endYear = yearFormat.format(endDate.getTime());
+
+                if (endDay == null && endMonth == null && endYear == null){
+
+                    dataViagem = day + "-" + month + "-" + year;
+                    textView.setText(dataViagem);
+                }else{
+
+                    dataViagem = day + "-" + month + "-" + year + "/" + endDay + "-" + endMonth + "-" + endYear;
+                    textView.setText(dataViagem);
+                }
+
             }
         });
 

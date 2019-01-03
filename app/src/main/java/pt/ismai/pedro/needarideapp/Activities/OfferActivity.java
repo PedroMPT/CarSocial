@@ -176,7 +176,10 @@ public class OfferActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        executeActivity(UserActivity.class);
+        Intent intent = new Intent(this,UserActivity.class);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+        startActivity(intent);
+        finish();
         return true;
     }
 

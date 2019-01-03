@@ -48,11 +48,13 @@
             android:clickable="false"
             android:ems="10"
             android:inputType="number"
-            android:text="@string/price"
             android:textAlignment="center"
             android:textSize="30sp"
             tools:layout_editor_absoluteX="98dp"
-            tools:layout_editor_absoluteY="162dp" />
+            tools:layout_editor_absoluteY="162dp"
+            android:background="@android:color/transparent"
+            android:text="@string/price"
+            />
 
     </RelativeLayout>
 
