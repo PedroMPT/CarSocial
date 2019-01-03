@@ -13,6 +13,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import pt.ismai.pedro.needarideapp.R;
@@ -31,7 +32,7 @@ public class LoginActivity extends Activity {
     //SETTING VARIABLES
     CardView login, facebookLogin;
     EditText usernameText, passwordText;
-    TextView signUpText;
+    TextView signUpText,forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class LoginActivity extends Activity {
         passwordText = findViewById(R.id.passwordText);
         facebookLogin = findViewById(R.id.facebookLogin);
         signUpText = findViewById(R.id.signUpText);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         //PASSING INTENT TO THE SIGN UP ACTIVITY
         signUpText.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +85,17 @@ public class LoginActivity extends Activity {
                         }
                     });
                 }
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                forgotPassword.setTextColor(Color.parseColor("#FFFFFF"));
+                Intent intent = new Intent(getApplicationContext(),ForgotPasswordActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

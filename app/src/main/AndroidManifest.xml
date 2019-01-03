@@ -55,8 +55,10 @@
         <activity
             android:name=".Activities.ListOfRidesActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.SeatsActivity"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".Activities.SeatsActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.ForgotPasswordActivity"></activity>
     </application>
 
 </manifest>
