@@ -39,7 +39,8 @@ public class SeatsActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String whereToValue = extra.getString("whereToVal");
         String whereFromValue = extra.getString("whereFromVal");
-        String viagemData = extra.getString("dataDeViagem");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
         String fim = extra.getString("fimViagem");
 
@@ -88,7 +89,7 @@ public class SeatsActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, whereFromValue + " - " + whereToValue + " - " + viagemData + " - " + inicio + " - " + fim + "!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, whereFromValue + " - " + whereToValue + " - " + dataInicioViagem + " - " + dataFimViagem + " - "+ inicio + " - " + fim + "!", Toast.LENGTH_LONG).show();
 
     }
 
@@ -97,7 +98,8 @@ public class SeatsActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String whereToValue = extra.getString("whereToVal");
         String whereFromValue = extra.getString("whereFromVal");
-        String viagemData = extra.getString("dataDeViagem");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
         String fim = extra.getString("fimViagem");
         seats = seatsText.getText().toString();
@@ -105,7 +107,8 @@ public class SeatsActivity extends AppCompatActivity {
         Intent sendIntent = new Intent(this, subActivity);
         sendIntent.putExtra("whereToVal", whereToValue);
         sendIntent.putExtra("whereFromVal", whereFromValue);
-        sendIntent.putExtra("dataDeViagem", viagemData);
+        sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
+        sendIntent.putExtra("dataFimViagem",dataFimViagem);
         sendIntent.putExtra("inicioViagem", inicio);
         sendIntent.putExtra("fimViagem", fim);
         sendIntent.putExtra("seats", seats);

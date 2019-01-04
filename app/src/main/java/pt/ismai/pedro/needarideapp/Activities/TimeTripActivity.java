@@ -28,12 +28,14 @@ public class TimeTripActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String whereToValue = extra.getString("whereToValor");
         String whereFromValue = extra.getString("whereFromValor");
-        String viagemData = extra.getString("dataDeViagem");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
 
         Intent sendIntent = new Intent(this,subActivity);
         sendIntent.putExtra("whereToVal",whereToValue);
         sendIntent.putExtra("whereFromVal",whereFromValue );
-        sendIntent.putExtra("dataDeViagem",viagemData);
+        sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
+        sendIntent.putExtra("dataFimViagem",dataFimViagem);
         sendIntent.putExtra("inicioViagem",startTime);
         sendIntent.putExtra("fimViagem",endTime);
         startActivity(sendIntent);

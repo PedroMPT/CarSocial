@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -23,7 +24,9 @@ public class TripDataActivity extends AppCompatActivity {
     TextView textView;
     DateRangeCalendarView calendar;
     Button button;
-    String dataViagem;
+    String dataInicioViagem;
+    String dataFimViagem;
+    StringBuilder tripMessage = new StringBuilder("Data da viagem:");
 
 
     @Override
@@ -62,9 +65,9 @@ public class TripDataActivity extends AppCompatActivity {
                 month = monthFormat.format(startDate.getTime());
                 year = yearFormat.format(startDate.getTime());
 
-                dataViagem = day + "-" + month + "-" + year;
+                dataInicioViagem = day + "-" + month + "-" + year;
 
-                textView.setText(dataViagem);
+                textView.setText(tripMessage.append(day).append("-").append(month).append("-").append(year));
 
             }
 
@@ -93,12 +96,13 @@ public class TripDataActivity extends AppCompatActivity {
 
                 if (endDay == null && endMonth == null && endYear == null){
 
-                    dataViagem = day + "-" + month + "-" + year;
-                    textView.setText(dataViagem);
+                    dataInicioViagem = day + "-" + month + "-" + year;
                 }else{
 
-                    dataViagem = day + "-" + month + "-" + year + "/" + endDay + "-" + endMonth + "-" + endYear;
-                    textView.setText(dataViagem);
+                    dataFimViagem = endDay + "-" + endMonth + "-" + endYear;
+
+                    textView.setText(tripMessage.append(day).append("-").append(month).append("-").append(year).append(" / ").append(endDay)
+                            .append("-").append(endMonth).append("-").append(endYear));
                 }
 
             }
@@ -123,7 +127,8 @@ public class TripDataActivity extends AppCompatActivity {
         Intent sendIntent = new Intent(this,subActivity);
         sendIntent.putExtra("whereToValor",whereToValue);
         sendIntent.putExtra("whereFromValor",whereFromValue);
-        sendIntent.putExtra("dataDeViagem",dataViagem);
+        sendIntent.putExtra("dataInicioViagem", dataInicioViagem);
+        sendIntent.putExtra("dataFimViagem", dataFimViagem);
         startActivity(sendIntent);
         finish();
     }

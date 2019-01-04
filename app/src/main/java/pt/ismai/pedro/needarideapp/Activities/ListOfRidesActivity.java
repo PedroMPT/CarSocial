@@ -63,7 +63,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
                     for (ParseObject ride : rides){
 
-                        price.add((String) ride.get("price"));
+                        price.add(ride.get("price") + "€");
                         time.add((String) ride.get("start"));
                         rideDate.add((String) ride.get("data"));
                         rideFrom.add((String) ride.get("from"));

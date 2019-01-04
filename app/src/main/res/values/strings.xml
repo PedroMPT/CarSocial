@@ -43,5 +43,8 @@
     <string name="pickup">Queres partir de onde?</string>
     <string name="leave">Para onde vais?</string>
     <string name="price">10</string>
+    <string name="currency">€</string>
+    <string name="RidePriceText">Qual o preço por cada lugar?</string>
+    <string name="RideSeatsText">Quantos passageiros podes levar?</string>
 
 </resources>

@@ -47,7 +47,8 @@ public class PriceActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String whereToValue = extra.getString("whereToVal");
         String whereFromValue = extra.getString("whereFromVal");
-        String viagemData = extra.getString("dataDeViagem");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
         String fim = extra.getString("fimViagem");
         String seats = extra.getString("seats");
@@ -62,7 +63,7 @@ public class PriceActivity extends AppCompatActivity {
                 if (numberOfPrice < 50){
 
                     numberOfPrice = numberOfPrice + 1;
-                    _stringVal = String.valueOf(numberOfPrice + "€");
+                    _stringVal = String.valueOf(numberOfPrice);
                     priceText.setText(_stringVal);
 
                 }
@@ -79,7 +80,7 @@ public class PriceActivity extends AppCompatActivity {
                 if (numberOfPrice > 10){
 
                     numberOfPrice = numberOfPrice - 1;
-                    _stringVal = String.valueOf(numberOfPrice + "€");
+                    _stringVal = String.valueOf(numberOfPrice);
                     priceText.setText(_stringVal);
                 }
 
@@ -98,7 +99,16 @@ public class PriceActivity extends AppCompatActivity {
 
                 ride.put("from",whereFromValue);
                 ride.put("to",whereToValue);
-                ride.put("data",viagemData);
+                ride.put("data",dataInicioViagem);
+
+                if (dataFimViagem == null){
+
+                    ride.put("data_fim","");
+                }
+                else{
+                    ride.put("data_fim",dataFimViagem);
+                }
+
                 ride.put("start",inicio);
                 ride.put("end",fim);
                 ride.put("seat",seats);
@@ -112,7 +122,10 @@ public class PriceActivity extends AppCompatActivity {
                         if (e == null){
 
                             FancyToast.makeText(PriceActivity.this,"Viagem Registada",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                            executeActivity(UserActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),UserActivity.class);
+                            intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
+                            startActivity(intent);
+                            finish();
                         }
 
                         else{
@@ -129,17 +142,31 @@ public class PriceActivity extends AppCompatActivity {
 
     private void executeActivity(Class<?> subActivity){
 
-        Intent intent = new Intent(this,subActivity);
-        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
-        startActivity(intent);
+        Bundle extra = getIntent().getExtras();
+        String whereToValue = extra.getString("whereToVal");
+        String whereFromValue = extra.getString("whereFromVal");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
+        String inicio = extra.getString("inicioViagem");
+        String fim = extra.getString("fimViagem");
+        String seats = extra.getString("seats");
+
+        Intent sendIntent = new Intent(this,subActivity);
+        sendIntent.putExtra("whereToVal",whereToValue);
+        sendIntent.putExtra("whereFromVal",whereFromValue );
+        sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
+        sendIntent.putExtra("dataFimViagem",dataFimViagem);
+        sendIntent.putExtra("inicioViagem",inicio);
+        sendIntent.putExtra("fimViagem",fim);
+        sendIntent.putExtra("lugares",seats);
+        startActivity(sendIntent);
         finish();
     }
 
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        Intent sendIntent = new Intent(this, PriceActivity.class);
-        startActivity(sendIntent);
+        executeActivity(SeatsActivity.class);
         return true;
     }
 
