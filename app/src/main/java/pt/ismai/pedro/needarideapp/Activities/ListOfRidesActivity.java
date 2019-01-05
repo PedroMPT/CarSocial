@@ -9,13 +9,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import pt.ismai.pedro.needarideapp.Adapters.RecyclerViewAdapter;
 import pt.ismai.pedro.needarideapp.R;
@@ -27,8 +31,14 @@ public class ListOfRidesActivity extends AppCompatActivity {
     final ArrayList<String> price = new ArrayList<>();
     final ArrayList<String> time = new ArrayList<>();
     final ArrayList<String> rideDate = new ArrayList<>();
+    final ArrayList<String> rideEndDate = new ArrayList<>();
     final ArrayList<String> rideFrom = new ArrayList<>();
     final ArrayList<String> rideTo = new ArrayList<>();
+    final ArrayList<String> carInfo = new ArrayList<>();
+    final ArrayList<String> seatsAvailable = new ArrayList<>();
+    final ArrayList<String> canSmoke = new ArrayList<>();
+    final ArrayList<String> canTakePets = new ArrayList<>();
+    final ArrayList<String> plate = new ArrayList<>();
 
     RecyclerView recyclerView;
     Bitmap bitmap;
@@ -51,10 +61,9 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
     private void initRideInfo(){
 
-
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Ride");
-        query.include("user_id");
         query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
+        query.include("user_id");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> rides, ParseException e) {
@@ -65,9 +74,10 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
                         price.add(ride.get("price") + "€");
                         time.add((String) ride.get("start"));
-                        rideDate.add((String) ride.get("data"));
+                        rideDate.add(changeDataFormat((String) ride.get("data")));
                         rideFrom.add((String) ride.get("from"));
                         rideTo.add((String) ride.get("to"));
+                        rideEndDate.add((String) ride.get("end"));
 
                         ParseObject user = ride.getParseObject("user_id");
                         String fullName = user.get("name") + " " + user.get("last_name");
@@ -82,7 +92,47 @@ public class ListOfRidesActivity extends AppCompatActivity {
                             e1.printStackTrace();
                         }
 
-                        initiateRecyclerView();
+                        ParseQuery<ParseObject> query = ParseQuery.getQuery("Car");
+                        query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
+                        query.include("user_id");
+
+                        query.findInBackground(new FindCallback<ParseObject>() {
+                            @Override
+                            public void done(List<ParseObject> cars, ParseException e) {
+
+                                if (e == null){
+
+                                    for (ParseObject car : cars){
+
+                                        carInfo.add(car.get("brand") + " " + car.get("model"));
+                                        seatsAvailable.add( car.get("seats") + " lugares disponíveis");
+                                        plate.add((String) car.get("plate"));
+
+                                        if ( car.get("can_smoke") == "true"){
+
+                                            canSmoke.add("Permitido fumar");
+
+                                        }else{
+                                            canSmoke.add("Não é permitido fumar");
+                                        }
+
+                                        if ( car.get("can_take_pets") == "true"){
+
+                                            canTakePets.add("Permitido transportar animais");
+
+                                        }else{
+                                            canTakePets.add("Não são permitidos animais");
+                                        }
+
+
+                                        initiateRecyclerView();
+                                    }
+                                }
+
+
+                            }
+                        });
+
 
 
                     }
@@ -100,7 +150,8 @@ public class ListOfRidesActivity extends AppCompatActivity {
     }
 
     private void initiateRecyclerView(){
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),avatar,avatarName, price,time,rideDate,rideFrom,rideTo);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),avatar,avatarName, price,time,rideDate,
+                rideEndDate,rideFrom,rideTo,carInfo, canSmoke, canTakePets, seatsAvailable, plate);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
@@ -114,6 +165,27 @@ public class ListOfRidesActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         return true;
+    }
+
+    private String changeDataFormat(String object){
+
+        final String OLD_FORMAT = "dd-MM-yyyy";
+        final String NEW_FORMAT = "dd MMM yyyy";
+        Locale local = new Locale("pt","PT");
+
+        String newDateString;
+
+        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT,local);
+        Date d = null;
+        try {
+            d = sdf.parse(object);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        sdf.applyPattern(NEW_FORMAT);
+        newDateString = sdf.format(d);
+
+        return  newDateString;
     }
 
 

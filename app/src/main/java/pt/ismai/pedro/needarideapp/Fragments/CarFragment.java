@@ -36,7 +36,6 @@ import pt.ismai.pedro.needarideapp.R;
 public class CarFragment extends Fragment {
 
     //SETTING VARIABLES
-    ConstraintLayout constraintLayout;
     EditText brandText,modelText,seatsText,plateText;
     Switch canSmoke,canTakePets;
     boolean can_smoke;
@@ -70,7 +69,6 @@ public class CarFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_car,container,false);
 
         //BINDING WITH LAYOUT
-        constraintLayout = view.findViewById(R.id.constraintLayout);
         brandText = view.findViewById(R.id.brandText);
         modelText = view.findViewById(R.id.modelText);
         seatsText = view.findViewById(R.id.seatsText);

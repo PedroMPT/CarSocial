@@ -18,9 +18,9 @@
 
     <string name="price_mock" translatable="false">25€</string>
     <string name="requests_count_mock" translatable="false">5</string>
-    <string name="requests_count_badge" translatable="false">HORA</string>
+    <string name="requests_count_badge" translatable="false">PARTIDA</string>
     <string name="weight_mock" translatable="false">50 oz</string>
-    <string name="weight_badge" translatable="false">DURAÇÃO</string>
+    <string name="weight_badge" translatable="false">CHEGADA</string>
     <string name="sender_badge" translatable="false">CONDUTOR</string>
     <string name="client_name_mock" translatable="false">Fernando</string>
     <string name="rating_mock" translatable="false">(26)</string>
@@ -29,7 +29,7 @@
     <string name="delivery_date_badge" translatable="false">INÍCIO DA VIAGEM</string>
     <string name="delivery_time_mock" translatable="false">6:30 pm</string>
     <string name="delivery_date_mock" translatable="false">May 16, 2016</string>
-    <string name="deadline_badge" translatable="false">DURAÇÃO ESTIMADA</string>
+    <string name="deadline_badge" translatable="false">MATRÍCULA</string>
     <string name="deadline_time_mock" translatable="false">24 minutes</string>
     <string name="request_btn_text" translatable="false">CONFIRMAR</string>
     <string name="btn_annotation_mock" translatable="false">5 people have sent a request</string>
@@ -46,5 +46,8 @@
     <string name="currency">€</string>
     <string name="RidePriceText">Qual o preço por cada lugar?</string>
     <string name="RideSeatsText">Quantos passageiros podes levar?</string>
+    <string name="Car">VEÍCULO</string>
+    <string name="smoke">Não é permitido fumar</string>
+    <string name="pets">Não são permitidos animais</string>
 
 </resources>

@@ -3,9 +3,10 @@
     android:id="@+id/linearTitleLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/bgContent"
+    android:background="@drawable/shadow_list_of_rides"
     android:baselineAligned="false"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+   >
 
     <!-- LEFT TITLE PART -->
 
@@ -64,12 +65,12 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/bgTitleRight"
-        android:paddingBottom="20dp"
-        android:paddingEnd="20dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="20dp"
         android:paddingStart="15dp"
-        android:paddingTop="10dp">
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp">
 
         <!-- PERCURSO -->
 
@@ -81,7 +82,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:src="@drawable/image"/>
+            android:src="@drawable/image" />
 
         <TextView
             android:id="@+id/avatar_name"
@@ -90,7 +91,6 @@
             android:layout_alignTop="@+id/avatar"
             android:layout_marginStart="11dp"
             android:layout_marginLeft="11dp"
-            android:layout_marginTop="11dp"
             android:layout_toEndOf="@+id/avatar"
             android:layout_toRightOf="@+id/avatar"
             android:ellipsize="marquee"
@@ -98,8 +98,16 @@
             android:singleLine="true"
             android:text="@string/avatar_name"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/content_rating_stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatar_name"
+            android:layout_alignStart="@id/avatar_name"
+            android:layout_alignLeft="@id/avatar_name"
+            android:src="@drawable/stars" />
 
 
         <!-- PARTE INFERIOR -->
@@ -109,10 +117,10 @@
             style="@style/TitleBadgeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/from_to_purple"/>
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/from_to_purple" />
 
         <TextView
             android:id="@+id/title_from_address"
@@ -124,18 +132,19 @@
             android:layout_toRightOf="@+id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
+            android:paddingLeft="5dp"
             android:singleLine="true"
+            android:text="@string/content_from1_mock"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:text="@string/content_from1_mock"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/title_from_to_dots_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/title_from_address"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="21dp"
             android:layout_toEndOf="@+id/title_from_to_dots"
             android:layout_toRightOf="@+id/title_from_to_dots"
             android:src="@color/contentDividerLine" />
@@ -149,11 +158,12 @@
             android:layout_toRightOf="@id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
             android:singleLine="true"
+            android:text="@string/content_to_mock"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:text="@string/content_to_mock"/>
-
+            android:textSize="16sp" />
 
 
     </RelativeLayout>

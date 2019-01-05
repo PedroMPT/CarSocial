@@ -72,4 +72,6 @@
     <color name="leftTextSelectorColorDark">@color/searchBarIconColorDark</color>
     <color name="middleTextSelectorColorDark">@color/searchBarIconColorDark</color>
     <color name="rightTextSelectorColorDark">@color/searchBarIconColorDark</color>
+
+    <color name="seatsAvailable">#0fc874</color>
 </resources>

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:visibility="gone">
+    android:visibility="gone"
+    android:background="@drawable/shadow_list_of_rides">
 
     <!-- content header line -->
     <RelativeLayout
@@ -78,12 +79,11 @@
             android:layout_above="@id/head_image_left_text"
             android:layout_alignStart="@id/head_image_left_text"
             android:layout_alignLeft="@id/head_image_left_text"
-            android:layout_marginStart="17dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginBottom="1dp"
-            android:paddingStart="20dp"
             android:paddingLeft="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="1dp"
             android:text="@string/requests_count_badge"
+            android:textAlignment="center"
             android:textColor="@color/date_color" />
 
         <TextView
@@ -107,10 +107,9 @@
             android:layout_above="@id/head_image_right_text"
             android:layout_alignStart="@id/head_image_right_text"
             android:layout_alignLeft="@id/head_image_right_text"
-            android:layout_marginStart="29dp"
-            android:layout_marginLeft="29dp"
             android:layout_marginBottom="0dp"
             android:text="@string/weight_badge"
+            android:textAlignment="center"
             android:textColor="@color/date_color" />
 
 
@@ -328,10 +327,10 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
-                    android:text="@string/delivery_date_badge" />
+                    android:text="@string/Car" />
 
                 <TextView
-                    android:id="@+id/content_delivery_time"
+                    android:id="@+id/content_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@id/content_delivery_date_badge"
@@ -343,13 +342,13 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/content_delivery_date"
+                    android:id="@+id/content_no_smoke"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/content_delivery_time"
-                    android:layout_alignStart="@id/content_delivery_time"
-                    android:layout_below="@id/content_delivery_time"
-                    android:text="@string/delivery_date_mock"
+                    android:layout_alignLeft="@id/content_car"
+                    android:layout_alignStart="@id/content_car"
+                    android:layout_below="@id/content_car"
+                    android:text="@string/smoke"
                     android:textColor="@color/mainTextColor"
                     android:textSize="14sp" />
 
@@ -370,7 +369,7 @@
                     android:text="@string/deadline_badge" />
 
                 <TextView
-                    android:id="@+id/content_deadline_time"
+                    android:id="@+id/content_plate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@id/content_deadline_badge"
@@ -380,14 +379,24 @@
                     android:textColor="@color/mainTextColor"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/content_no_pets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/content_plate"
+                    android:layout_alignStart="@id/content_plate"
+                    android:layout_below="@id/content_plate"
+                    android:text="@string/pets"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/content_deadline_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/content_deadline_time"
-                    android:layout_alignStart="@id/content_deadline_time"
-                    android:layout_below="@id/content_deadline_time"
+                    android:layout_alignLeft="@id/content_plate"
+                    android:layout_alignStart="@id/content_plate"
+                    android:layout_below="@id/content_plate"
                     android:text=""
                     android:textColor="@color/mainTextColor"
                     android:textSize="14sp" />
@@ -409,12 +418,13 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/seatsAvailable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="@string/btn_annotation_mock"
             android:textAlignment="center"
-            android:textColor="@color/contentBadgeTitle"
+            android:textColor="@color/seatsAvailable"
             android:textSize="12sp" />
 
     </LinearLayout>

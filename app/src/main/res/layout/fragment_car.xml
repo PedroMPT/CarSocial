@@ -4,183 +4,231 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CarFragment">
+    tools:context=".Fragments.ProfileFragment"
+    android:background="@color/colorAccent">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent">
+        tools:context=".ProfileActivity">
 
-        <Switch
-            android:id="@+id/canSmoke"
-            android:layout_width="212dp"
-            android:layout_height="31dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@+id/modelText"
-            android:text="Fumador"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seatsText" />
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/seatsText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:ems="10"
-            android:hint=" Lugares"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plateText" />
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:cardElevation="10dp">
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/modelText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:ems="10"
-            android:hint=" Modelo"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/brandText" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/back"
+                android:gravity="center_horizontal">
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/plateText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:ems="10"
-            android:hint=" Matrícula"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/modelText" />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="150dp"
+                    android:layout_height="144dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginBottom="40dp"
+                    android:src="@drawable/car_img" />
+            </RelativeLayout>
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/brandText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="92dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:ems="10"
-            android:hint=" Marca"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        </android.support.v7.widget.CardView>
 
-        <Switch
-            android:id="@+id/canTakePets"
-            android:layout_width="212dp"
-            android:layout_height="39dp"
-            android:layout_alignStart="@+id/canSmoke"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:text="Possível levar Animais"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/canSmoke" />
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="192dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="500dp">
+
+                <TextView
+                    android:id="@+id/brandTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Marca"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/brandText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/modelTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Modelo"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/modelText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/plateTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Matrícula"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/plateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/seatsTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Lugares Disponíveis"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/seatsText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+
+                <Switch
+                    android:id="@+id/canSmoke"
+                    android:layout_width="212dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Fumador"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+                <Switch
+                    android:id="@+id/canTakePets"
+                    android:layout_width="212dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="Possível levar Animais"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/btnRequest"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:padding="10dp"
+                    android:text="GUARDAR"
+                    android:textAlignment="center"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="20sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/saveButton"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="351dp"
+            android:layout_marginTop="206dp"
             android:background="@color/toolbar"
             android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_mode_edit_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.904"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/canTakePets"
-            app:layout_constraintVertical_bias="0.081" />
+            app:fabSize="mini"
+            app:layout_anchorGravity="bottom|center" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/btnRequest"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:padding="10dp"
-            android:text="GUARDAR"
-            android:textAlignment="center"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/canTakePets" />
-
-    </android.support.constraint.ConstraintLayout>
-
+    </RelativeLayout>
 </FrameLayout>

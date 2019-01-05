@@ -1,5 +1,6 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,11 +90,12 @@ public class TimeTripActivity extends AppCompatActivity {
 
 
         button.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("DefaultLocale")
             @Override
             public void onClick(View v) {
 
-                startTime = String.valueOf(hourS) + ":" + String.valueOf(minuteS);
-                endTime = String.valueOf(hourE) + ":" + String.valueOf(minuteE);
+                startTime = String.format("%02d:%02d", hourS, minuteS);
+                endTime = String.format("%02d:%02d", hourE, minuteE);
 
                 executeActivity(SeatsActivity.class);
             }

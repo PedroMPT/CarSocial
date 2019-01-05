@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ProfileFragment">
+    tools:context=".Fragments.ProfileFragment"
+    android:background="@color/colorAccent">
 
     <!-- TODO: Update blank fragment layout -->
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorAccent"
         tools:context=".ProfileActivity">
 
 
@@ -20,10 +20,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:cardElevation="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -35,225 +32,254 @@
                     android:id="@+id/circleImageView"
                     android:layout_width="140dp"
                     android:layout_height="134dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     app:civ_border_color="@color/colorPrimary"
-                    app:civ_border_width="3dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:civ_border_width="3dp" />
 
                 <TextView
                     android:id="@+id/fullNameText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/circleImageView"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_alignStart="@id/circleImageView"
+                    android:layout_alignEnd="@id/circleImageView"
+                    android:layout_marginTop="10dip"
                     android:fontFamily="@font/lato"
                     android:text="TextView"
+                    android:textAlignment="center"
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="354dp"
+                    android:layout_marginTop="163dp"
+                    android:background="@color/toolbar"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_mode_edit_black_24dp"
+                    app:fabSize="mini"
+                    app:layout_anchorGravity="bottom|center" />
+
             </RelativeLayout>
 
         </android.support.v7.widget.CardView>
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/usernameText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_name"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint=" Username"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameText" />
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="192dp">
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/nameText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_face"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint=" Nome"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="5dp"
+                android:orientation="vertical"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="500dp">
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/lastNameText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_face"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint="Último  Nome"
-            android:inputType="textPersonName"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameText" />
+                <TextView
+                    android:id="@+id/usernameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Username"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/emailText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_email"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint=" E-mail"
-            android:inputType="textEmailSubject"
-            android:padding="8dp"
-            android:textSize="18sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameText" />
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/usernameText"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_name"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/phoneText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_phone"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint=" Telemóvel"
-            android:inputType="phone"
-            android:padding="8dp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailText" />
+                <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Nome"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/nameText"
+                    android:layout_width="350dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_face"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/lastNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Último Nome"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
 
 
-        <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
-            android:id="@+id/musicText"
-            android:layout_width="350dp"
-            android:layout_height="35dp"
-            android:layout_alignEnd="@+id/imageView9"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/edit_text_bg"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:drawableLeft="@drawable/ic_action_music"
-            android:ems="10"
-            android:fontFamily="@font/latoregular"
-            android:hint=" Músicos Preferidos"
-            android:inputType="textMultiLine"
-            android:padding="8dp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneText" />
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/lastNameText"
+                    android:layout_width="350dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_face"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textPersonName"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
 
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/btnRequest"
-            android:bottomLeftRadius="5dp"
-            android:bottomRightRadius="5dp"
-            android:padding="10dp"
-            android:text="GUARDAR"
-            android:textAlignment="center"
-            android:textColor="@color/mainTextColor"
-            android:textSize="20sp"
-            android:topLeftRadius="5dp"
-            android:topRightRadius="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/musicText" />
+                <TextView
+                    android:id="@+id/emailTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Email"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/toolbar"
-            android:clickable="true"
-            android:src="@drawable/ic_mode_edit_black_24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.585"
-            app:layout_constraintStart_toEndOf="@+id/saveButton"
-            app:layout_constraintTop_toBottomOf="@+id/musicText"
-            app:layout_constraintVertical_bias="0.158" />
 
-    </android.support.constraint.ConstraintLayout>
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/emailText"
+                    android:layout_width="350dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_email"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textEmailSubject"
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/phoneTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Telemóvel"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/phoneText"
+                    android:layout_width="350dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_phone"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="phone"
+                    android:textAlignment="textStart"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <TextView
+                    android:id="@+id/musicTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:fontFamily="@font/latoblack"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:paddingRight="5dp"
+                    android:text="Músicos Favoritos"
+                    android:textAlignment="textStart"
+                    android:textSize="14sp" />
+
+
+                <com.gcherubini.animatedexpandableedittext.AnimatedExpandableEditText
+                    android:id="@+id/musicText"
+                    android:layout_width="350dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edit_text_bg"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:drawableStart="@drawable/ic_action_music"
+                    android:ems="10"
+                    android:fontFamily="@font/latoregular"
+                    android:inputType="textMultiLine"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+                <Button
+                    android:id="@+id/saveButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/btnRequest"
+                    android:bottomLeftRadius="5dp"
+                    android:bottomRightRadius="5dp"
+                    android:padding="10dp"
+                    android:text="GUARDAR"
+                    android:textAlignment="center"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="20sp"
+                    android:topLeftRadius="5dp"
+                    android:topRightRadius="5dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
 </FrameLayout>
