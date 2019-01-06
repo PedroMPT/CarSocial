@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CarSocial</string>
+    <string name="app_name">Car Social</string>
     <string name="facebook_app_id">203434823873162</string>
     <string name="fb_login_protocol_scheme">fb203434823873162</string>
     <string name="navigation_drawer_open"> Open Navigation Drawer</string>
@@ -49,5 +49,8 @@
     <string name="Car">VEÍCULO</string>
     <string name="smoke">Não é permitido fumar</string>
     <string name="pets">Não são permitidos animais</string>
+
+    //API Key
+    <string name="google_maps">AIzaSyD_rFRqKspnWo1BQaYBbIDxgbq7cJQlxf8</string>
 
 </resources>

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 
@@ -47,6 +48,12 @@ public class TripDataActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         calendar = findViewById(R.id.calendar);
         button = findViewById(R.id.button);
+
+        Bundle extra = getIntent().getExtras();
+        String whereToValue = extra.getString("rideFromAddress");
+        String whereFromValue = extra.getString("rideFromCity");
+
+        Toast.makeText(this, whereFromValue + whereToValue, Toast.LENGTH_SHORT).show();
 
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
@@ -121,8 +128,8 @@ public class TripDataActivity extends AppCompatActivity {
     private void executeActivity(Class<?> subActivity){
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("whereToVal");
-        String whereFromValue = extra.getString("whereFrom");
+        String whereToValue = extra.getString("rideFromAddress");
+        String whereFromValue = extra.getString("rideFromCity");
 
         Intent sendIntent = new Intent(this,subActivity);
         sendIntent.putExtra("whereToValor",whereToValue);

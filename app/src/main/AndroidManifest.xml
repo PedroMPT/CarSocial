@@ -3,9 +3,10 @@
     package="pt.ismai.pedro.needarideapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".StarterApplication"
@@ -16,6 +17,13 @@
         android:roundIcon="@mipmap/share"
         android:supportsRtl="true"
         android:theme="@style/SplashTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyD_rFRqKspnWo1BQaYBbIDxgbq7cJQlxf8" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
@@ -58,7 +66,10 @@
         <activity
             android:name=".Activities.SeatsActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.ForgotPasswordActivity"></activity>
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity
+            android:name=".Activities.RideFromActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

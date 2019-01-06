@@ -1,6 +1,7 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.parse.FindCallback;
 import com.parse.GetDataCallback;
 import com.parse.ParseException;
@@ -35,6 +39,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import pt.ismai.pedro.needarideapp.R;
 
 public class UserActivity extends AppCompatActivity  {
+
+    private static final String TAG = "MapsActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
+
 
     //SETTING VARIABLES
     private DrawerLayout drawerLayout;
@@ -133,7 +141,6 @@ public class UserActivity extends AppCompatActivity  {
 
                     case R.id.nav_my_trips:
 
-
                         break;
 
                     case R.id.nav_logout:
@@ -161,10 +168,13 @@ public class UserActivity extends AppCompatActivity  {
                     if (e == null){
 
                         if (cars.size() > 0){
-                            Intent intent1 = new Intent(getApplicationContext(),OfferActivity.class);
-                            startActivity(intent1);
 
-                            FancyToast.makeText(UserActivity.this,"Boa!! Tens Um carro associado",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                            if (isServicesOK()) {
+                                Intent intent1 = new Intent(getApplicationContext(), RideFromActivity.class);
+                                startActivity(intent1);
+
+                                FancyToast.makeText(UserActivity.this, "Boa!! Tens Um carro associado", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                            }
                         }
                         else{
 
@@ -228,5 +238,30 @@ public class UserActivity extends AppCompatActivity  {
         }
     }
 
+
+    public boolean isServicesOK(){
+
+        Log.d(TAG,"isServicesOK: checking google services version");
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(UserActivity.this);
+
+        if (available == ConnectionResult.SUCCESS){
+
+            Log.d(TAG,"isServicesOK: Google Play Servicesis working");
+            return true;
+        }else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+
+            // an error occured but we can't resolve it
+
+            Log.d(TAG,"A Error occured but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(UserActivity.this,
+                    available,ERROR_DIALOG_REQUEST);
+            dialog.show();
+
+        }else{
+
+            Toast.makeText(this, "You can't make make request", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
 
 }

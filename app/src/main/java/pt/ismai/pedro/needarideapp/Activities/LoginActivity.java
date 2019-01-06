@@ -23,14 +23,8 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class LoginActivity extends Activity {
 
-      /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        ParseFacebookUtils.onActivityResult(requestCode, resultCode, data);
-    }*/
-
     //SETTING VARIABLES
-    CardView login, facebookLogin;
+    CardView login;
     EditText usernameText, passwordText;
     TextView signUpText,forgotPassword;
 
@@ -43,7 +37,6 @@ public class LoginActivity extends Activity {
         login = findViewById(R.id.login);
         usernameText = findViewById(R.id.usernameText);
         passwordText = findViewById(R.id.passwordText);
-        facebookLogin = findViewById(R.id.facebookLogin);
         signUpText = findViewById(R.id.signUpText);
         forgotPassword = findViewById(R.id.forgotPassword);
 
@@ -100,27 +93,6 @@ public class LoginActivity extends Activity {
         });
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
-
-        /*final Collection<String> permissions = Arrays.asList("public_profile", "email");
-
-        facebookLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ParseFacebookUtils.logInWithReadPermissionsInBackground(LoginActivity.this, permissions, new LogInCallback() {
-                    @Override
-                    public void done(ParseUser user, ParseException e) {
-                        if (user == null) {
-                            Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-                        } else if (user.isNew()) {
-                            Log.d("MyApp", "User signed up and logged in through Facebook!");
-                        } else {
-                            Log.d("MyApp", "User logged in through Facebook!");
-                        }
-                    }
-                });
-            }
-        });*/
 
     }
     private void executeActivity(Class<?> subActivity){
