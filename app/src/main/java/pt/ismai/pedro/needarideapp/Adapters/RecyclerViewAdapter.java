@@ -39,6 +39,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> canTakePets;
     private ArrayList<String> seatsAvailable;
     private ArrayList<String> plate;
+    private ArrayList<String> rideFromAddress;
+    private ArrayList<String> rideToAddress;
     private LayoutInflater inflater;
 
     // Criar o construtor
@@ -48,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                ArrayList<String> time, ArrayList<String> rideDate,ArrayList<String> rideEndDate,
                                ArrayList<String> rideFrom, ArrayList<String> rideTo, ArrayList<String> carInfo,
                                ArrayList<String> canSmoke, ArrayList<String> canTakePets, ArrayList<String> seatsAvailable,
-                               ArrayList<String> plate) {
+                               ArrayList<String> plate, ArrayList<String> rideFromAddress ,ArrayList<String> rideToAddress) {
         inflater = LayoutInflater.from(context);
         this.avatar = avatar;
         this.avatarName = avatarName;
@@ -62,6 +64,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         this.canSmoke = canSmoke;
         this.canTakePets = canTakePets;
         this.seatsAvailable = seatsAvailable;
+        this.rideFromAddress = rideFromAddress;
+        this.rideToAddress = rideToAddress;
         this.plate = plate;
     }
 
@@ -89,8 +93,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.head_image_left_text.setText(time.get(i));
         viewHolder.content_avatar.setImageBitmap(avatar.get(i));
         viewHolder.content_name_view.setText(avatarName.get(i));
-        viewHolder.content_from_address_1.setText(rideFrom.get(i));
-        viewHolder.content_to_address_1.setText(rideTo.get(i));
+        viewHolder.content_from_address_2.setText(rideFrom.get(i));
+        viewHolder.content_to_address_2.setText(rideTo.get(i));
+        viewHolder.content_from_address_1.setText(rideFromAddress.get(i));
+        viewHolder.content_to_address_1.setText(rideToAddress.get(i));
         viewHolder.content_car.setText(carInfo.get(i));
         viewHolder.head_image_right_text.setText(rideEndDate.get(i));
         viewHolder.content_no_pets.setText(canTakePets.get(i));
@@ -130,8 +136,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         RelativeLayout leftSideRelativeLayout,rightTitleRelativeLayout;
         TextView title_price,title_time,title_date,avatar_name,title_from_address,title_to_address,
                 content_price, content_date, head_image_left_text,content_name_view,
-                content_from_address_1, content_to_address_1, content_delivery_date, content_request_btn,
-                content_car, head_image_right_text, content_no_pets,content_no_smoke, seatsAvailable, content_plate;
+                content_from_address_1, content_to_address_1,content_request_btn,
+                content_car, head_image_right_text, content_no_pets,content_no_smoke, seatsAvailable, content_plate,
+                content_from_address_2, content_to_address_2;
         CircleImageView avatar;
         ImageView content_avatar;
         FoldingCell foldingCell;
@@ -167,6 +174,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
            content_no_smoke = itemView.findViewById(R.id.content_no_smoke);
            seatsAvailable = itemView.findViewById(R.id.seatsAvailable);
            content_plate = itemView.findViewById(R.id.content_plate);
+           content_from_address_2 = itemView.findViewById(R.id.content_from_address_2);
+           content_to_address_2 = itemView.findViewById(R.id.content_to_address_2);
         }
     }
 

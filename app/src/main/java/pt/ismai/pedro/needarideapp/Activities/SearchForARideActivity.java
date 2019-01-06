@@ -54,7 +54,7 @@ import pt.ismai.pedro.needarideapp.Adapters.PlaceAutocompleteAdapter;
 import pt.ismai.pedro.needarideapp.Model.PlaceInfo;
 import pt.ismai.pedro.needarideapp.R;
 
-public class RideFromActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener {
+public class SearchForARideActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.OnConnectionFailedListener {
 
     //Global Vars
     private static final String TAG = "RideFromActivity";
@@ -117,7 +117,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ride_from);
+        setContentView(R.layout.activity_search_for_aride);
 
         //SETTING TOOLBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -133,7 +133,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             @Override
             public void onClick(View v) {
 
-                executeActivity(TripDataActivity.class);
+                executeActivity(ListOfRidesActivity.class);
             }
         });
         getLocationPermission();
@@ -210,7 +210,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
         String searchString = mSearchText.getText().toString();
 
-        Geocoder geocoder = new Geocoder(RideFromActivity.this);
+        Geocoder geocoder = new Geocoder(SearchForARideActivity.this);
         List<Address> list = new ArrayList<>();
 
         try{
@@ -225,10 +225,10 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
         if (list.size() > 0){
 
-          Address address = list.get(0);
+            Address address = list.get(0);
 
-          Log.d(TAG, "geoLocate: Found a Location" + address.toString());
-          moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
+            Log.d(TAG, "geoLocate: Found a Location" + address.toString());
+            moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
         }
     }
 
@@ -238,7 +238,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
         String searchString = mSearchTextTo.getText().toString();
 
-        Geocoder geocoder = new Geocoder(RideFromActivity.this);
+        Geocoder geocoder = new Geocoder(SearchForARideActivity.this);
         List<Address> list = new ArrayList<>();
 
         try{
@@ -270,26 +270,26 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
                 fusedLocationProviderClient.getLastLocation()
                         .addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
+                            @Override
+                            public void onComplete(@NonNull Task<Location> task) {
 
-                        if(task.isSuccessful() && task.getResult() != null){
+                                if(task.isSuccessful() && task.getResult() != null){
 
-                            Log.d(TAG,"Find Location!!");
+                                    Log.d(TAG,"Find Location!!");
 
-                            Location currentLocation = task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(),
-                                    currentLocation.getLongitude()),
-                                    DEFAULT_ZOOM,"My Location");
-                        }else{
+                                    Location currentLocation = task.getResult();
+                                    moveCamera(new LatLng(currentLocation.getLatitude(),
+                                                    currentLocation.getLongitude()),
+                                            DEFAULT_ZOOM,"My Location");
+                                }else{
 
-                            Log.d(TAG,"Location is null!!");
+                                    Log.d(TAG,"Location is null!!");
 
-                            Toast.makeText(RideFromActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
-                        }
+                                    Toast.makeText(SearchForARideActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
+                                }
 
-                    }
-                });
+                            }
+                        });
 
             }
 
@@ -345,7 +345,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
                                     Log.d(TAG,"Location is null!!");
 
-                                    Toast.makeText(RideFromActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SearchForARideActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -381,7 +381,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
         Log.d(TAG,"Initializaing Map!!");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        mapFragment.getMapAsync(RideFromActivity.this);
+        mapFragment.getMapAsync(SearchForARideActivity.this);
     }
 
     private void getLocationPermission() {
@@ -571,6 +571,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     private void executeActivity(Class<?> subActivity){
 
         Intent intent = new Intent(this,subActivity);
+        intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
         intent.putExtra("rideFromAddress", rideFromAddress);
         intent.putExtra("rideFromCity", rideFromCity);
         intent.putExtra("rideToAddress", rideToAddress);

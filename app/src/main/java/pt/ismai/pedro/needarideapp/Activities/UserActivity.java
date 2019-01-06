@@ -211,7 +211,7 @@ public class UserActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                executeActivity(ListOfRidesActivity.class);
+                executeActivity(SearchForARideActivity.class);
             }
         });
 

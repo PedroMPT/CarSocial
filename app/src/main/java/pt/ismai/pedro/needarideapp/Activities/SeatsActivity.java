@@ -37,8 +37,10 @@ public class SeatsActivity extends AppCompatActivity {
         numberOfSeats = Integer.parseInt(seatsText.getText().toString());
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("whereToVal");
-        String whereFromValue = extra.getString("whereFromVal");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
         String dataInicioViagem = extra.getString("dataInicioViagem");
         String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
@@ -89,15 +91,26 @@ public class SeatsActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, whereFromValue + " - " + whereToValue + " - " + dataInicioViagem + " - " + dataFimViagem + " - "+ inicio + " - " + fim + "!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, rideFromAddress + " - "
+                + rideFromAddress + " - "
+                + rideFromCity + " - "
+                + rideToAddress + " - "
+                + rideToCity + " - "
+                + dataInicioViagem + " - "
+                + dataFimViagem + " - "
+                + inicio + " - "
+                + fim + "!",
+                Toast.LENGTH_LONG).show();
 
     }
 
     private void executeActivity(Class<?> subActivity) {
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("whereToVal");
-        String whereFromValue = extra.getString("whereFromVal");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
         String dataInicioViagem = extra.getString("dataInicioViagem");
         String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
@@ -105,12 +118,14 @@ public class SeatsActivity extends AppCompatActivity {
         seats = seatsText.getText().toString();
 
         Intent sendIntent = new Intent(this, subActivity);
-        sendIntent.putExtra("whereToVal", whereToValue);
-        sendIntent.putExtra("whereFromVal", whereFromValue);
+        sendIntent.putExtra("rideFromAddress",rideFromAddress);
+        sendIntent.putExtra("rideFromCity",rideFromCity);
+        sendIntent.putExtra("rideToAddress",rideToAddress);
+        sendIntent.putExtra("rideToCity",rideToCity);
         sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
         sendIntent.putExtra("dataFimViagem",dataFimViagem);
-        sendIntent.putExtra("inicioViagem", inicio);
-        sendIntent.putExtra("fimViagem", fim);
+        sendIntent.putExtra("inicioViagem",inicio);
+        sendIntent.putExtra("fimViagem",fim);
         sendIntent.putExtra("seats", seats);
         startActivity(sendIntent);
         finish();

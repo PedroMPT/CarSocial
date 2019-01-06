@@ -45,15 +45,17 @@ public class PriceActivity extends AppCompatActivity {
         numberOfPrice = Integer.parseInt(priceText.getText().toString());
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("whereToVal");
-        String whereFromValue = extra.getString("whereFromVal");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
         String dataInicioViagem = extra.getString("dataInicioViagem");
         String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
         String fim = extra.getString("fimViagem");
         String seats = extra.getString("seats");
 
-        routeText.setText(whereFromValue + " >> " + whereToValue);
+        routeText.setText(rideFromAddress + " >> " + rideToAddress);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +99,10 @@ public class PriceActivity extends AppCompatActivity {
 
                 ride = new ParseObject("Ride");
 
-                ride.put("from",whereFromValue);
-                ride.put("to",whereToValue);
+                ride.put("from_address",rideFromAddress);
+                ride.put("to_address",rideToAddress);
+                ride.put("from_city",rideFromCity);
+                ride.put("to_city",rideToCity);
                 ride.put("data",dataInicioViagem);
 
                 if (dataFimViagem == null){
@@ -143,8 +147,10 @@ public class PriceActivity extends AppCompatActivity {
     private void executeActivity(Class<?> subActivity){
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("whereToVal");
-        String whereFromValue = extra.getString("whereFromVal");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
         String dataInicioViagem = extra.getString("dataInicioViagem");
         String dataFimViagem = extra.getString("dataFimViagem");
         String inicio = extra.getString("inicioViagem");
@@ -152,8 +158,10 @@ public class PriceActivity extends AppCompatActivity {
         String seats = extra.getString("seats");
 
         Intent sendIntent = new Intent(this,subActivity);
-        sendIntent.putExtra("whereToVal",whereToValue);
-        sendIntent.putExtra("whereFromVal",whereFromValue );
+        sendIntent.putExtra("rideFromAddress",rideFromAddress);
+        sendIntent.putExtra("rideFromCity",rideFromCity);
+        sendIntent.putExtra("rideToAddress",rideToAddress);
+        sendIntent.putExtra("rideToCity",rideToCity);
         sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
         sendIntent.putExtra("dataFimViagem",dataFimViagem);
         sendIntent.putExtra("inicioViagem",inicio);
@@ -170,6 +178,13 @@ public class PriceActivity extends AppCompatActivity {
         return true;
     }
 
+    private String splitToGetCity(String city){
 
+        String result;
+        String[] parts = city.split(",");
+
+        result = parts[1];
+        return result;
+    }
 
 }

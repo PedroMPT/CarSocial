@@ -49,9 +49,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.FromActivity"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".Activities.TripDataActivity"
             android:theme="@style/AppTheme" />
         <activity
@@ -66,10 +63,12 @@
         <activity
             android:name=".Activities.SeatsActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.ForgotPasswordActivity" />
         <activity
             android:name=".Activities.RideFromActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity android:name=".Activities.SearchForARideActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

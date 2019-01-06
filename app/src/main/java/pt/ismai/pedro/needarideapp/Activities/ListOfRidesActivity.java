@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.parse.FindCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -34,6 +33,8 @@ public class ListOfRidesActivity extends AppCompatActivity {
     final ArrayList<String> rideEndDate = new ArrayList<>();
     final ArrayList<String> rideFrom = new ArrayList<>();
     final ArrayList<String> rideTo = new ArrayList<>();
+    final ArrayList<String> rideFromAddress = new ArrayList<>();
+    final ArrayList<String> rideToAddress = new ArrayList<>();
     final ArrayList<String> carInfo = new ArrayList<>();
     final ArrayList<String> seatsAvailable = new ArrayList<>();
     final ArrayList<String> canSmoke = new ArrayList<>();
@@ -42,7 +43,6 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     Bitmap bitmap;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,14 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
     private void initRideInfo(){
 
+        Bundle extra = getIntent().getExtras();
+        String checkFromCity= extra.getString("rideFromAddress");
+        String checkToCity = extra.getString("rideToAddress");
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Ride");
         query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
+        query.whereContains("from_address",checkFromCity);
+        query.whereContains("to_address",checkToCity);
         query.include("user_id");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -75,8 +81,10 @@ public class ListOfRidesActivity extends AppCompatActivity {
                         price.add(ride.get("price") + "€");
                         time.add((String) ride.get("start"));
                         rideDate.add(changeDataFormat((String) ride.get("data")));
-                        rideFrom.add((String) ride.get("from"));
-                        rideTo.add((String) ride.get("to"));
+                        rideFrom.add((String) ride.get("from_city"));
+                        rideTo.add((String) ride.get("to_city"));
+                        rideFromAddress.add((String) ride.get("from_address"));
+                        rideToAddress.add((String) ride.get("to_address"));
                         rideEndDate.add((String) ride.get("end"));
 
                         ParseObject user = ride.getParseObject("user_id");
@@ -151,7 +159,8 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
     private void initiateRecyclerView(){
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(getApplicationContext(),avatar,avatarName, price,time,rideDate,
-                rideEndDate,rideFrom,rideTo,carInfo, canSmoke, canTakePets, seatsAvailable, plate);
+                rideEndDate,rideFrom,rideTo,carInfo, canSmoke, canTakePets, seatsAvailable, plate,
+                rideFromAddress,rideToAddress);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
@@ -160,7 +169,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        Intent intent = new Intent(this,UserActivity.class);
+        Intent intent = new Intent(this,SearchForARideActivity.class);
         intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
         startActivity(intent);
         finish();

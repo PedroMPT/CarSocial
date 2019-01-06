@@ -50,10 +50,12 @@ public class TripDataActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("rideFromAddress");
-        String whereFromValue = extra.getString("rideFromCity");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
 
-        Toast.makeText(this, whereFromValue + whereToValue, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, rideFromAddress + rideFromCity + rideToAddress + rideToCity, Toast.LENGTH_LONG).show();
 
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
@@ -128,12 +130,16 @@ public class TripDataActivity extends AppCompatActivity {
     private void executeActivity(Class<?> subActivity){
 
         Bundle extra = getIntent().getExtras();
-        String whereToValue = extra.getString("rideFromAddress");
-        String whereFromValue = extra.getString("rideFromCity");
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
 
         Intent sendIntent = new Intent(this,subActivity);
-        sendIntent.putExtra("whereToValor",whereToValue);
-        sendIntent.putExtra("whereFromValor",whereFromValue);
+        sendIntent.putExtra("rideFromAddress",rideFromAddress);
+        sendIntent.putExtra("rideFromCity",rideFromCity);
+        sendIntent.putExtra("rideToAddress",rideToAddress);
+        sendIntent.putExtra("rideToCity",rideToCity);
         sendIntent.putExtra("dataInicioViagem", dataInicioViagem);
         sendIntent.putExtra("dataFimViagem", dataFimViagem);
         startActivity(sendIntent);
@@ -143,7 +149,7 @@ public class TripDataActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        executeActivity(FromActivity.class);
+        executeActivity(RideFromActivity.class);
         return true;
     }
 

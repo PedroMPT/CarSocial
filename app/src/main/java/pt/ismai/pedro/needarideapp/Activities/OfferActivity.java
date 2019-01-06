@@ -80,7 +80,6 @@ public class OfferActivity extends AppCompatActivity {
 
                 startSearch(text.toString());
                 passingValue = searchBar.getText();
-                executeActivity(FromActivity.class);
 
             }
 
