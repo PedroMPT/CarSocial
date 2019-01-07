@@ -16,18 +16,6 @@
         tools:context=".MapsActivity" />
 
 
-    <ImageView
-        android:id="@+id/title_from_to_dots"
-        style="@style/TitleBadgeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="22dp"
-        android:layout_marginBottom="563dp"
-        android:src="@drawable/from_to_purple"
-        />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -48,27 +36,16 @@
 
         <AutoCompleteTextView
             android:id="@+id/inputSearch"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ic_magnify"
             android:background="@null"
-            android:hint="Enter Address, City or Zip Code"
+            android:hint="Qual será o ponto de partida"
             android:imeOptions="actionSearch"
+            android:padding="5dp"
             android:textColor="#000"
             android:textSize="15sp" />
-
-        <ImageView
-            android:id="@+id/ic_gps"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignRight="@+id/inputSearch"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_gps" />
 
 
     </RelativeLayout>
@@ -94,13 +71,14 @@
 
         <AutoCompleteTextView
             android:id="@+id/inputSearch2"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ic_magnify2"
             android:background="@null"
-            android:hint="Enter Address, City or Zip Code"
+            android:hint="Que meta traçamos"
             android:imeOptions="actionSearch"
+            android:padding="5dp"
             android:textColor="#000"
             android:textSize="15sp" />
 
@@ -123,6 +101,30 @@
         android:text="Confirmar"
         android:textColor="@color/bgContent"
         android:textSize="16sp" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/ic_gps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="100dp"
+        android:backgroundTint="@color/colorAccent"
+        app:srcCompat="@drawable/ic_gps" />
+
+    <ImageView
+        android:id="@+id/title_from_to_dots"
+        style="@style/TitleBadgeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/from_to_purple" />
 
 
 </RelativeLayout>

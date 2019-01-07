@@ -13,7 +13,7 @@
             android:title="Notificações"/>
 
         <item android:id="@+id/nav_my_trips"
-            android:icon="@drawable/ic_car"
+            android:icon="@drawable/ic_directions_car_black_24dp"
             android:title="As minhas viagens"/>
     </group>
 

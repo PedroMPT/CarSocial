@@ -8,6 +8,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -71,7 +72,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
     private AutoCompleteTextView mSearchText;
     private AutoCompleteTextView mSearchTextTo;
-    private ImageView mGps;
+    private FloatingActionButton mGps;
 
     //vars
     private GoogleMap mMap;
