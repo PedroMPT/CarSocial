@@ -2,7 +2,6 @@ package pt.ismai.pedro.needarideapp.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
 
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -76,7 +74,6 @@ public class TripDataActivity extends AppCompatActivity {
 
                 dataInicioViagem = day + "-" + month + "-" + year;
 
-                textView.setText(tripMessage.append(day).append("-").append(month).append("-").append(year));
 
             }
 
@@ -110,8 +107,6 @@ public class TripDataActivity extends AppCompatActivity {
 
                     dataFimViagem = endDay + "-" + endMonth + "-" + endYear;
 
-                    textView.setText(tripMessage.append(day).append("-").append(month).append("-").append(year).append(" / ").append(endDay)
-                            .append("-").append(endMonth).append("-").append(endYear));
                 }
 
             }

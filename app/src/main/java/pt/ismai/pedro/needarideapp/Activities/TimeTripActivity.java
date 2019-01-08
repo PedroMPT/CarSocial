@@ -66,7 +66,6 @@ public class TimeTripActivity extends AppCompatActivity {
         Calendar c = Calendar.getInstance();
         hourS = c.get(Calendar.HOUR);
         minuteS = c.get(Calendar.MINUTE);
-
         hourE = c.get(Calendar.HOUR);
         minuteE = c.get(Calendar.MINUTE);
         starTimePicker.setIs24HourView(true);

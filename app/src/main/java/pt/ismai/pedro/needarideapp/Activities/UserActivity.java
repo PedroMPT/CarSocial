@@ -44,7 +44,7 @@ public class UserActivity extends AppCompatActivity  {
     private static final int ERROR_DIALOG_REQUEST = 9001;
 
 
-    //SETTING VARIABLES
+    //VARS
     private DrawerLayout drawerLayout;
     CircleImageView circleImageView;
     TextView nome;
@@ -263,5 +263,6 @@ public class UserActivity extends AppCompatActivity  {
         }
         return false;
     }
+
 
 }

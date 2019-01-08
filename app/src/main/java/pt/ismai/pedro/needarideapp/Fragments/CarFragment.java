@@ -49,18 +49,6 @@ public class CarFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public void hideOrNotToHide(RelativeLayout relativeLayout){
-
-
-        for (int i = 0 ; i < relativeLayout.getChildCount();i++){
-
-            View v = relativeLayout.getChildAt(i);
-
-           v.setVisibility(View.INVISIBLE);
-
-        }
-
-    }
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,

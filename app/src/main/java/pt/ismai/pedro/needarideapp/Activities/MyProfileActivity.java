@@ -19,7 +19,7 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class MyProfileActivity extends AppCompatActivity {
 
-    //SETTING VARIABLES
+    //VARS
     TabLayout tabLayout;
     TabItem perfilTab,carTab;
     ViewPager viewPager;

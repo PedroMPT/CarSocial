@@ -13,17 +13,13 @@ import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.RequestPasswordResetCallback;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import pt.ismai.pedro.needarideapp.R;
 
-//import com.parse.facebook.ParseFacebookUtils;
-
-
 public class LoginActivity extends Activity {
 
-    //SETTING VARIABLES
+    //VARS
     CardView login;
     EditText usernameText, passwordText;
     TextView signUpText,forgotPassword;
@@ -63,20 +59,7 @@ public class LoginActivity extends Activity {
 
                 }else{
 
-                    ParseUser.logInInBackground(usernameText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
-                        @Override
-                        public void done(ParseUser user, ParseException e) {
-
-                            if(user != null){
-
-                               executeActivity(UserActivity.class);
-                            }else {
-                                FancyToast.makeText(LoginActivity.this,"O utlizador não está registado.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-
-                                }
-
-                        }
-                    });
+                   userLogin();
                 }
             }
         });
@@ -101,5 +84,24 @@ public class LoginActivity extends Activity {
         intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
         startActivity(intent);
         finish();
+    }
+
+    private void userLogin(){
+
+        ParseUser.logInInBackground(usernameText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException e) {
+
+                if(user != null){
+
+                    executeActivity(UserActivity.class);
+                }else {
+                    FancyToast.makeText(LoginActivity.this,"O utlizador não está registado.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+
+                }
+
+            }
+        });
+
     }
 }

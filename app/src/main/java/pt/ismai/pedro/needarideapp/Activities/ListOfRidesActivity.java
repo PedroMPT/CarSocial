@@ -1,5 +1,7 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,7 +42,6 @@ public class ListOfRidesActivity extends AppCompatActivity {
     final ArrayList<String> canSmoke = new ArrayList<>();
     final ArrayList<String> canTakePets = new ArrayList<>();
     final ArrayList<String> plate = new ArrayList<>();
-
     RecyclerView recyclerView;
     Bitmap bitmap;
 
@@ -57,6 +58,8 @@ public class ListOfRidesActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.mt_recycler);
         initRideInfo();
+
+
     }
 
     private void initRideInfo(){
@@ -64,6 +67,10 @@ public class ListOfRidesActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         String checkFromCity= extra.getString("rideFromAddress");
         String checkToCity = extra.getString("rideToAddress");
+
+        final ProgressDialog progressDialog = new ProgressDialog(ListOfRidesActivity.this);
+        progressDialog.setMessage("A carregar resultados...");
+        progressDialog.show();
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Ride");
         query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
@@ -86,6 +93,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
                         rideFromAddress.add((String) ride.get("from_address"));
                         rideToAddress.add((String) ride.get("to_address"));
                         rideEndDate.add((String) ride.get("end"));
+                        seatsAvailable.add(ride.get("seat") + " lugares disponiveis");
 
                         ParseObject user = ride.getParseObject("user_id");
                         String fullName = user.get("name") + " " + user.get("last_name");
@@ -101,7 +109,7 @@ public class ListOfRidesActivity extends AppCompatActivity {
                         }
 
                         ParseQuery<ParseObject> query = ParseQuery.getQuery("Car");
-                        query.whereNotEqualTo("user_id",ParseUser.getCurrentUser());
+                        query.whereEqualTo("user_id",ride.getParseObject("user_id"));
                         query.include("user_id");
 
                         query.findInBackground(new FindCallback<ParseObject>() {
@@ -113,7 +121,6 @@ public class ListOfRidesActivity extends AppCompatActivity {
                                     for (ParseObject car : cars){
 
                                         carInfo.add(car.get("brand") + " " + car.get("model"));
-                                        seatsAvailable.add( car.get("seats") + " lugares disponíveis");
                                         plate.add((String) car.get("plate"));
 
                                         if ( car.get("can_smoke") == "true"){
@@ -132,28 +139,18 @@ public class ListOfRidesActivity extends AppCompatActivity {
                                             canTakePets.add("Não são permitidos animais");
                                         }
 
-
                                         initiateRecyclerView();
+                                        progressDialog.dismiss();
                                     }
                                 }
 
 
                             }
                         });
-
-
-
                     }
-
-
                 }
-
-
             }
-
-
         });
-
 
     }
 

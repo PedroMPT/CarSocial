@@ -18,11 +18,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Managing the splash screen
         mWaitHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
-             String token = ParseUser.getCurrentUser().getSessionToken();
+                //Saving the user session
+                String token = ParseUser.getCurrentUser().getSessionToken();
 
                 if (token != null){
 

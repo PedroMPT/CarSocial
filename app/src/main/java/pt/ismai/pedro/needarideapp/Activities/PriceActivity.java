@@ -19,9 +19,9 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class PriceActivity extends AppCompatActivity {
 
+    //Vars
     TextView priceText, routeText;
     Button button;
-
     ParseObject ride;
     String price;
     ImageView add, remove;
@@ -176,15 +176,6 @@ public class PriceActivity extends AppCompatActivity {
         onBackPressed();
         executeActivity(SeatsActivity.class);
         return true;
-    }
-
-    private String splitToGetCity(String city){
-
-        String result;
-        String[] parts = city.split(",");
-
-        result = parts[1];
-        return result;
     }
 
 }

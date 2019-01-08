@@ -84,8 +84,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.title_price.setText(price.get(i));
         viewHolder.title_date.setText(rideDate.get(i));
         viewHolder.title_time.setText(time.get(i));
-        viewHolder.title_from_address.setText(rideFrom.get(i));
-        viewHolder.title_to_address.setText(rideTo.get(i));
+        viewHolder.title_from_address.setText(rideFromAddress.get(i));
+        viewHolder.title_to_address.setText(rideToAddress.get(i));
         viewHolder.avatar_name.setText(avatarName.get(i));
         viewHolder.avatar.setImageBitmap(avatar.get(i));
         viewHolder.content_date.setText(rideDate.get(i));

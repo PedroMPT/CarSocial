@@ -42,13 +42,6 @@
             android:name=".Activities.MyProfileActivity"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.OfferActivity"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Activities.TripDataActivity"
             android:theme="@style/AppTheme" />
         <activity

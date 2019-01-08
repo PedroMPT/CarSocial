@@ -25,6 +25,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akexorcist.googledirection.DirectionCallback;
+import com.akexorcist.googledirection.GoogleDirection;
+import com.akexorcist.googledirection.model.Direction;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -74,7 +77,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     private AutoCompleteTextView mSearchTextTo;
     private FloatingActionButton mGps;
 
-    //vars
+    //Vars
     private GoogleMap mMap;
     private boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -110,6 +113,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
             init();
         }
 
@@ -207,7 +211,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
     private void geoLocate(){
 
-        Log.d(TAG, "geoLocate: geoLocationg");
+        Log.d(TAG, "geoLocate: GeoLocation");
 
         String searchString = mSearchText.getText().toString();
 

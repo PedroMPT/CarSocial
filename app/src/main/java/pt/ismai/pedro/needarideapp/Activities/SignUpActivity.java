@@ -34,7 +34,7 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class SignUpActivity extends Activity {
 
-    //SETTING VARIABLES
+    //VARS
     CardView signup;
     ImageView arrowImage, profilePhoto;
     EditText usernameText, passwordText, nameText, phoneText,musicText, emailText, passwordConfirm,lastNameText;
@@ -220,36 +220,7 @@ public class SignUpActivity extends Activity {
                 user.put("phone",phoneText.getText().toString());
                 user.put("music",musicText.getText().toString());
 
-                user.signUpInBackground(new SignUpCallback() {
-                    @Override
-                    public void done(ParseException e) {
-
-                        if (e == null){
-
-                            FancyToast.makeText(SignUpActivity.this,"Registo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                            executeActivity(UserActivity.class);
-
-                        }else{
-
-                            switch (e.getCode()){
-
-                                case ParseException.USERNAME_TAKEN:
-                                    FancyToast.makeText(SignUpActivity.this,"O utilizador já existe.",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                                    break;
-
-                                case ParseException.EMAIL_TAKEN:
-                                    FancyToast.makeText(SignUpActivity.this,"O email já existe",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                                    break;
-
-                                default:
-                                    FancyToast.makeText(SignUpActivity.this,"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                                    break;
-
-                            }
-
-                        }
-                    }
-                });
+                userSignUp();
             }
         });
 
@@ -279,23 +250,45 @@ public class SignUpActivity extends Activity {
         }
     }
 
-    private EditText setBorder(EditText e){
-
-        ShapeDrawable shape = new ShapeDrawable(new RectShape());
-        shape.getPaint().setColor(Color.RED);
-        shape.getPaint().setStyle(Paint.Style.STROKE);
-        shape.getPaint().setStrokeWidth(3);
-
-        e.setBackground(shape);
-
-        return e;
-
-    }
     private void executeActivity(Class<?> subActivity){
 
         Intent intent = new Intent(this,subActivity);
         intent.putExtra("objectId", ParseUser.getCurrentUser().getObjectId());
         startActivity(intent);
         finish();
+    }
+
+    private void userSignUp(){
+
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+
+                if (e == null){
+
+                    FancyToast.makeText(SignUpActivity.this,"Registo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                    executeActivity(UserActivity.class);
+
+                }else{
+
+                    switch (e.getCode()){
+
+                        case ParseException.USERNAME_TAKEN:
+                            FancyToast.makeText(SignUpActivity.this,"O utilizador já existe.",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                            break;
+
+                        case ParseException.EMAIL_TAKEN:
+                            FancyToast.makeText(SignUpActivity.this,"O email já existe",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                            break;
+
+                        default:
+                            FancyToast.makeText(SignUpActivity.this,"Algo correu mal.\n Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                            break;
+
+                    }
+
+                }
+            }
+        });
     }
 }

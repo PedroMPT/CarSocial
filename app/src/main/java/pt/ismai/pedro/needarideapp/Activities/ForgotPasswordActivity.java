@@ -29,22 +29,28 @@ public class ForgotPasswordActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-
-                ParseUser.requestPasswordResetInBackground(emailText.getText().toString(), new RequestPasswordResetCallback() {
-                    @Override
-                    public void done(ParseException e) {
-
-                        if (e == null){
-
-                            FancyToast.makeText(ForgotPasswordActivity.this,"O email foi enviado com as devidas instruções",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-
-                        }else{
-
-                            FancyToast.makeText(ForgotPasswordActivity.this,"Algo correu mal.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                        }
-                    }
-                });
+                forgotPasswordRequest();
             }
         });
+    }
+
+    private void forgotPasswordRequest(){
+
+        ParseUser.requestPasswordResetInBackground(emailText.getText().toString(), new RequestPasswordResetCallback() {
+            @Override
+            public void done(ParseException e) {
+
+                if (e == null){
+
+                    FancyToast.makeText(ForgotPasswordActivity.this,"O email foi enviado com as devidas instruções",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+
+                }else{
+
+                    FancyToast.makeText(ForgotPasswordActivity.this,"Algo correu mal.\n Tente Novamente!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                }
+            }
+        });
+
+
     }
 }

@@ -235,13 +235,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profilePhoto"
         android:layout_width="106dp"
         android:layout_height="87dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/camera"
+        android:src="@drawable/ic_camera_alt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/arrowImage" />
 

@@ -116,15 +116,5 @@
         android:backgroundTint="@color/colorAccent"
         app:srcCompat="@drawable/ic_gps" />
 
-    <ImageView
-        android:id="@+id/title_from_to_dots"
-        style="@style/TitleBadgeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="29dp"
-        android:src="@drawable/from_to_purple" />
-
 
 </RelativeLayout>
