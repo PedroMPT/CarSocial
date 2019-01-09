@@ -25,7 +25,7 @@ import pt.ismai.pedro.needarideapp.R;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
 
-    // Definir as Variáveis do conteúdo
+    // Vars
     private ArrayList<Bitmap> avatar;
     private ArrayList<String> avatarName;
     private ArrayList<String> price;
@@ -43,7 +43,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> rideToAddress;
     private LayoutInflater inflater;
 
-    // Criar o construtor
+    // Constructor
 
 
     public RecyclerViewAdapter(Context context, ArrayList<Bitmap> avatar, ArrayList<String> avatarName, ArrayList<String> price,
@@ -127,7 +127,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount() {
 
-        return price.size();
+        return carInfo.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

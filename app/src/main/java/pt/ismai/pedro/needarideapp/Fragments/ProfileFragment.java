@@ -37,7 +37,7 @@ import pt.ismai.pedro.needarideapp.R;
  */
 public class ProfileFragment extends Fragment {
 
-    //SETTING VARIABLES
+    //WIDGETS
     EditText nameText,usernameText,emailText,phoneText,musicText,lastNameText;
     CircleImageView circleImageView;
     TextView fullNameText;

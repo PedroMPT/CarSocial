@@ -35,14 +35,18 @@ import pt.ismai.pedro.needarideapp.R;
  */
 public class CarFragment extends Fragment {
 
-    //SETTING VARIABLES
-    EditText brandText,modelText,seatsText,plateText;
-    Switch canSmoke,canTakePets;
+    //VARS
+
     boolean can_smoke;
     boolean can_pets;
     String activeUser;
+
+    //WIDGETS
+
     FloatingActionButton fab;
     Button saveButton;
+    EditText brandText,modelText,seatsText,plateText;
+    Switch canSmoke,canTakePets;
 
 
     public CarFragment() {

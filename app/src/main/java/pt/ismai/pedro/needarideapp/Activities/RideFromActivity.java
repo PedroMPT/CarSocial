@@ -4,6 +4,7 @@ import android.Manifest;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
 import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Route;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -45,6 +47,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.parse.ParseUser;
@@ -69,6 +72,8 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40,-168), new LatLng(71,136));
     private PlaceInfo mPlace;
+    private LatLng fromGeo, toGeo;
+    PolylineOptions polylineOptions;
 
 
     //widgets
@@ -77,7 +82,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     private AutoCompleteTextView mSearchTextTo;
     private FloatingActionButton mGps;
 
-    //Vars
+    //vars
     private GoogleMap mMap;
     private boolean mLocationPermissionGranted = false;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -113,7 +118,6 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             }
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
             init();
         }
 
@@ -134,6 +138,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
         button = findViewById(R.id.button);
         mSearchTextTo = findViewById(R.id.inputSearch2);
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,6 +147,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
         getLocationPermission();
+
 
     }
 
@@ -199,6 +205,27 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
+        GoogleDirection.withServerKey("google_maps")
+                .from(fromGeo)
+                .to(toGeo)
+                .execute(new DirectionCallback() {
+                    @Override
+                    public void onDirectionSuccess(Direction direction, String rawBody) {
+                        if(direction.isOK()) {
+                            // Do something
+                            direction.getRouteList();
+
+                        } else {
+                            // Do something
+                        }
+                    }
+
+                    @Override
+                    public void onDirectionFailure(Throwable t) {
+                        // Do something
+                    }
+                });
+
         hideSoftKeyboard();
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +238,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
     private void geoLocate(){
 
-        Log.d(TAG, "geoLocate: GeoLocation");
+        Log.d(TAG, "geoLocate: geoLocationg");
 
         String searchString = mSearchText.getText().toString();
 
@@ -234,6 +261,8 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
           Log.d(TAG, "geoLocate: Found a Location" + address.toString());
           moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
+          fromGeo = new LatLng(address.getLatitude(),address.getLongitude());
+
         }
     }
 
@@ -262,6 +291,14 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
             Log.d(TAG, "geoLocate: Found a Location" + address.toString());
             moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
+            toGeo = new LatLng(address.getLatitude(),address.getLongitude());
+            polylineOptions = new PolylineOptions()
+                    .color(Color.RED)
+                    .width(5f);
+
+            polylineOptions.add(fromGeo,toGeo);
+            mMap.addPolyline(polylineOptions);
+
         }
     }
 
