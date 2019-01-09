@@ -72,9 +72,6 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(
             new LatLng(-40,-168), new LatLng(71,136));
     private PlaceInfo mPlace;
-    private LatLng fromGeo, toGeo;
-    PolylineOptions polylineOptions;
-
 
     //widgets
 
@@ -205,27 +202,6 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
             }
         });
 
-        GoogleDirection.withServerKey("google_maps")
-                .from(fromGeo)
-                .to(toGeo)
-                .execute(new DirectionCallback() {
-                    @Override
-                    public void onDirectionSuccess(Direction direction, String rawBody) {
-                        if(direction.isOK()) {
-                            // Do something
-                            direction.getRouteList();
-
-                        } else {
-                            // Do something
-                        }
-                    }
-
-                    @Override
-                    public void onDirectionFailure(Throwable t) {
-                        // Do something
-                    }
-                });
-
         hideSoftKeyboard();
         mGps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,7 +237,6 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
           Log.d(TAG, "geoLocate: Found a Location" + address.toString());
           moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
-          fromGeo = new LatLng(address.getLatitude(),address.getLongitude());
 
         }
     }
@@ -291,14 +266,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
             Log.d(TAG, "geoLocate: Found a Location" + address.toString());
             moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
-            toGeo = new LatLng(address.getLatitude(),address.getLongitude());
-            polylineOptions = new PolylineOptions()
-                    .color(Color.RED)
-                    .width(5f);
-
-            polylineOptions.add(fromGeo,toGeo);
-            mMap.addPolyline(polylineOptions);
-
+            
         }
     }
 
