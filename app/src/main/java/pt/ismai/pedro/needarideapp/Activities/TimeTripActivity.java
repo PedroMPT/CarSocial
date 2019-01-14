@@ -15,6 +15,7 @@ import pt.ismai.pedro.needarideapp.R;
 
 public class TimeTripActivity extends AppCompatActivity {
 
+    //VARS
     TimePicker starTimePicker, endTimePicker;
     Button button;
     TextView textView;
@@ -23,29 +24,6 @@ public class TimeTripActivity extends AppCompatActivity {
     private int hourE;
     private int minuteE;
     String startTime , endTime;
-
-    private void executeActivity(Class<?> subActivity){
-
-        Bundle extra = getIntent().getExtras();
-        String rideFromAddress = extra.getString("rideFromAddress");
-        String rideFromCity = extra.getString("rideFromCity");
-        String rideToAddress = extra.getString("rideToAddress");
-        String rideToCity = extra.getString("rideToCity");
-        String dataInicioViagem = extra.getString("dataInicioViagem");
-        String dataFimViagem = extra.getString("dataFimViagem");
-
-        Intent sendIntent = new Intent(this,subActivity);
-        sendIntent.putExtra("rideFromAddress",rideFromAddress);
-        sendIntent.putExtra("rideFromCity",rideFromCity);
-        sendIntent.putExtra("rideToAddress",rideToAddress);
-        sendIntent.putExtra("rideToCity",rideToCity);
-        sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
-        sendIntent.putExtra("dataFimViagem",dataFimViagem);
-        sendIntent.putExtra("inicioViagem",startTime);
-        sendIntent.putExtra("fimViagem",endTime);
-        startActivity(sendIntent);
-        finish();
-    }
 
 
     @Override
@@ -106,6 +84,30 @@ public class TimeTripActivity extends AppCompatActivity {
 
 
     }
+
+    private void executeActivity(Class<?> subActivity){
+
+        Bundle extra = getIntent().getExtras();
+        String rideFromAddress = extra.getString("rideFromAddress");
+        String rideFromCity = extra.getString("rideFromCity");
+        String rideToAddress = extra.getString("rideToAddress");
+        String rideToCity = extra.getString("rideToCity");
+        String dataInicioViagem = extra.getString("dataInicioViagem");
+        String dataFimViagem = extra.getString("dataFimViagem");
+
+        Intent sendIntent = new Intent(this,subActivity);
+        sendIntent.putExtra("rideFromAddress",rideFromAddress);
+        sendIntent.putExtra("rideFromCity",rideFromCity);
+        sendIntent.putExtra("rideToAddress",rideToAddress);
+        sendIntent.putExtra("rideToCity",rideToCity);
+        sendIntent.putExtra("dataInicioViagem",dataInicioViagem);
+        sendIntent.putExtra("dataFimViagem",dataFimViagem);
+        sendIntent.putExtra("inicioViagem",startTime);
+        sendIntent.putExtra("fimViagem",endTime);
+        startActivity(sendIntent);
+        finish();
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

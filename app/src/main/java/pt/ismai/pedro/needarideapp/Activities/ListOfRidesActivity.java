@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -142,11 +144,22 @@ public class ListOfRidesActivity extends AppCompatActivity {
                                         progressDialog.dismiss();
                                     }
                                 }
+                                else{
+                                    
+                                    FancyToast.makeText(ListOfRidesActivity.this,e.getMessage()
+                                            ,FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                }
 
 
                             }
                         });
                     }
+                }
+
+                else{
+
+                    FancyToast.makeText(ListOfRidesActivity.this,"Algo correu mal. \n Verifique a ligação à Internet!"
+                            ,FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                 }
             }
         });

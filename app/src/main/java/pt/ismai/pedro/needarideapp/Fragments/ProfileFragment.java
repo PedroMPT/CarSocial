@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -115,6 +116,11 @@ public class ProfileFragment extends Fragment {
                                 });
                             }
                         }
+                    }
+                    else{
+
+
+                        FancyToast.makeText(getActivity(),"Algo correu mal. Tente Novamente",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }
                 }
             });

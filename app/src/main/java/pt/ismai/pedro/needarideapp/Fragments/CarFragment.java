@@ -3,7 +3,6 @@ package pt.ismai.pedro.needarideapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
@@ -142,6 +139,10 @@ public class CarFragment extends Fragment {
                         }
                     }
                 }
+                else{
+
+                    FancyToast.makeText(getActivity(),"Registo efetuado com sucesso",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                }
             }
         });
 
@@ -191,7 +192,7 @@ public class CarFragment extends Fragment {
 
                 if (validationError){
 
-                    Toast.makeText(getActivity(), validationMessage.toString(), Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(getActivity(),validationMessage.toString(),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     return;
                 }
 

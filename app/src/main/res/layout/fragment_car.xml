@@ -221,5 +221,5 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         app:srcCompat="@drawable/ic_mode_edit_black_24dp"
-        android:background="@color/toolbar"/>
+        />
 </FrameLayout>

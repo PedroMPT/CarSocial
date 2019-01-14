@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,8 +26,6 @@ public class TripDataActivity extends AppCompatActivity {
     Button button;
     String dataInicioViagem;
     String dataFimViagem;
-    StringBuilder tripMessage = new StringBuilder("Data da viagem:");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +46,6 @@ public class TripDataActivity extends AppCompatActivity {
         calendar = findViewById(R.id.calendar);
         button = findViewById(R.id.button);
 
-        Bundle extra = getIntent().getExtras();
-        String rideFromAddress = extra.getString("rideFromAddress");
-        String rideFromCity = extra.getString("rideFromCity");
-        String rideToAddress = extra.getString("rideToAddress");
-        String rideToCity = extra.getString("rideToCity");
-
-        Toast.makeText(this, rideFromAddress + rideFromCity + rideToAddress + rideToCity, Toast.LENGTH_LONG).show();
 
         calendar.setCalendarListener(new DateRangeCalendarView.CalendarListener() {
             @Override
@@ -139,6 +131,8 @@ public class TripDataActivity extends AppCompatActivity {
         sendIntent.putExtra("dataFimViagem", dataFimViagem);
         startActivity(sendIntent);
         finish();
+
+        FancyToast.makeText(TripDataActivity.this,rideFromAddress + rideFromCity + rideToAddress + rideToCity,FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
     }
 
     @Override

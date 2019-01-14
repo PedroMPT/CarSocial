@@ -23,7 +23,7 @@ public class PriceActivity extends AppCompatActivity {
     TextView priceText, routeText;
     Button button;
     ParseObject ride;
-    String price;
+    String price, rideFromAddress,rideFromCity,rideToAddress,rideToCity,dataInicioViagem,dataFimViagem,inicio,fim,seats;
     ImageView add, remove;
     Integer numberOfPrice;
 
@@ -44,16 +44,7 @@ public class PriceActivity extends AppCompatActivity {
         routeText = findViewById(R.id.routeText);
         numberOfPrice = Integer.parseInt(priceText.getText().toString());
 
-        Bundle extra = getIntent().getExtras();
-        String rideFromAddress = extra.getString("rideFromAddress");
-        String rideFromCity = extra.getString("rideFromCity");
-        String rideToAddress = extra.getString("rideToAddress");
-        String rideToCity = extra.getString("rideToCity");
-        String dataInicioViagem = extra.getString("dataInicioViagem");
-        String dataFimViagem = extra.getString("dataFimViagem");
-        String inicio = extra.getString("inicioViagem");
-        String fim = extra.getString("fimViagem");
-        String seats = extra.getString("seats");
+        getExtras();
 
         routeText.setText(rideFromAddress + " >> " + rideToAddress);
 
@@ -144,18 +135,23 @@ public class PriceActivity extends AppCompatActivity {
 
     }
 
-    private void executeActivity(Class<?> subActivity){
+    private void getExtras(){
 
         Bundle extra = getIntent().getExtras();
-        String rideFromAddress = extra.getString("rideFromAddress");
-        String rideFromCity = extra.getString("rideFromCity");
-        String rideToAddress = extra.getString("rideToAddress");
-        String rideToCity = extra.getString("rideToCity");
-        String dataInicioViagem = extra.getString("dataInicioViagem");
-        String dataFimViagem = extra.getString("dataFimViagem");
-        String inicio = extra.getString("inicioViagem");
-        String fim = extra.getString("fimViagem");
-        String seats = extra.getString("seats");
+        rideFromAddress = extra.getString("rideFromAddress");
+        rideFromCity = extra.getString("rideFromCity");
+        rideToAddress = extra.getString("rideToAddress");
+        rideToCity = extra.getString("rideToCity");
+        dataInicioViagem = extra.getString("dataInicioViagem");
+        dataFimViagem = extra.getString("dataFimViagem");
+        inicio = extra.getString("inicioViagem");
+        fim = extra.getString("fimViagem");
+        seats = extra.getString("seats");
+
+
+    }
+
+    private void executeActivity(Class<?> subActivity){
 
         Intent sendIntent = new Intent(this,subActivity);
         sendIntent.putExtra("rideFromAddress",rideFromAddress);

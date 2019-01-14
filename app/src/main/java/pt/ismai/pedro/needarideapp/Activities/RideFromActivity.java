@@ -1,19 +1,17 @@
 package pt.ismai.pedro.needarideapp.Activities;
 
 import android.Manifest;
-
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -22,14 +20,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.akexorcist.googledirection.DirectionCallback;
-import com.akexorcist.googledirection.GoogleDirection;
-import com.akexorcist.googledirection.model.Direction;
-import com.akexorcist.googledirection.model.Route;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -47,11 +39,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.parse.ParseUser;
-
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -266,7 +257,7 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
             Log.d(TAG, "geoLocate: Found a Location" + address.toString());
             moveCamera(new LatLng(address.getLatitude(),address.getLongitude()),DEFAULT_ZOOM, address.getAddressLine(0));
-            
+
         }
     }
 
@@ -295,7 +286,8 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
                             Log.d(TAG,"Location is null!!");
 
-                            Toast.makeText(RideFromActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
+                            FancyToast.makeText(RideFromActivity.this,"Não encontramos a sua localização. \n Verifique a ligação"
+                                    ,FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
                         }
 
                     }
@@ -355,7 +347,8 @@ public class RideFromActivity extends AppCompatActivity implements OnMapReadyCal
 
                                     Log.d(TAG,"Location is null!!");
 
-                                    Toast.makeText(RideFromActivity.this, "Could not find current location", Toast.LENGTH_SHORT).show();
+                                    FancyToast.makeText(RideFromActivity.this,"Não encontramos a sua localização. \n Verifique a ligação"
+                                            ,FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
                                 }
 
                             }

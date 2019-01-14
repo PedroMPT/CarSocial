@@ -58,13 +58,16 @@ public class SignUpActivity extends Activity {
             try {
 
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(SignUpActivity.this.getContentResolver(),selectedImage);
+
                 profilePhoto.setImageBitmap(bitmap);
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
 
                 byte[] byteArray = stream.toByteArray();
+
                 file = new ParseFile("image.png",byteArray);
+
                 file.saveInBackground();
 
 
@@ -207,20 +210,31 @@ public class SignUpActivity extends Activity {
 
                 if (validationError){
 
-                    Toast.makeText(SignUpActivity.this, validationMessage.toString(), Toast.LENGTH_LONG).show();
+                    FancyToast.makeText(SignUpActivity.this,validationMessage.toString(),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     return;
                 }
+                
+                if (file == null){
 
-                user.put("profile_photo",file);
-                user.put("name",nameText.getText().toString());
-                user.put("last_name",lastNameText.getText().toString());
-                user.setUsername(usernameText.getText().toString());
-                user.setPassword(passwordText.getText().toString());
-                user.setEmail(emailText.getText().toString());
-                user.put("phone",phoneText.getText().toString());
-                user.put("music",musicText.getText().toString());
+                    FancyToast.makeText(SignUpActivity.this,"Por favor coloque uma foto para uma partilha de carros social :)"
+                            ,FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
+                }
+                else{
 
-                userSignUp();
+                    user.put("profile_photo",file);
+                    user.put("name",nameText.getText().toString());
+                    user.put("last_name",lastNameText.getText().toString());
+                    user.setUsername(usernameText.getText().toString());
+                    user.setPassword(passwordText.getText().toString());
+                    user.setEmail(emailText.getText().toString());
+                    user.put("phone",phoneText.getText().toString());
+                    user.put("music",musicText.getText().toString());
+
+                    userSignUp();
+
+                }
+
+
             }
         });
 

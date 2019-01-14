@@ -7,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import pt.ismai.pedro.needarideapp.R;
 
@@ -18,6 +19,7 @@ public class SeatsActivity extends AppCompatActivity {
     ImageView add, remove;
     String seats;
     Integer numberOfSeats;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +38,7 @@ public class SeatsActivity extends AppCompatActivity {
 
         numberOfSeats = Integer.parseInt(seatsText.getText().toString());
 
-        Bundle extra = getIntent().getExtras();
-        String rideFromAddress = extra.getString("rideFromAddress");
-        String rideFromCity = extra.getString("rideFromCity");
-        String rideToAddress = extra.getString("rideToAddress");
-        String rideToCity = extra.getString("rideToCity");
-        String dataInicioViagem = extra.getString("dataInicioViagem");
-        String dataFimViagem = extra.getString("dataFimViagem");
-        String inicio = extra.getString("inicioViagem");
-        String fim = extra.getString("fimViagem");
-
-
-       add.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                String _stringVal;
@@ -61,7 +52,7 @@ public class SeatsActivity extends AppCompatActivity {
                }
 
            }
-       });
+        });
 
         remove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,17 +82,6 @@ public class SeatsActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, rideFromAddress + " - "
-                + rideFromAddress + " - "
-                + rideFromCity + " - "
-                + rideToAddress + " - "
-                + rideToCity + " - "
-                + dataInicioViagem + " - "
-                + dataFimViagem + " - "
-                + inicio + " - "
-                + fim + "!",
-                Toast.LENGTH_LONG).show();
-
     }
 
     private void executeActivity(Class<?> subActivity) {
@@ -129,6 +109,16 @@ public class SeatsActivity extends AppCompatActivity {
         sendIntent.putExtra("seats", seats);
         startActivity(sendIntent);
         finish();
+
+        FancyToast.makeText(SeatsActivity.this,rideFromAddress + " - "
+                + rideFromAddress + " - "
+                + rideFromCity + " - "
+                + rideToAddress + " - "
+                + rideToCity + " - "
+                + dataInicioViagem + " - "
+                + dataFimViagem + " - "
+                + inicio + " - "
+                + fim + "!",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
     }
 
     @Override

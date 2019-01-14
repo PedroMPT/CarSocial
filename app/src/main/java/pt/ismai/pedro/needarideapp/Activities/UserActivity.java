@@ -113,6 +113,10 @@ public class UserActivity extends AppCompatActivity  {
                             });
                         }
                     }
+                }else{
+
+                    FancyToast.makeText(UserActivity.this,"Algo correu mal. \n Verifique a ligação à Internet!"
+                            ,FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                 }
             }
         });
@@ -146,7 +150,7 @@ public class UserActivity extends AppCompatActivity  {
                     case R.id.nav_logout:
 
                         ParseUser.logOut();
-                        Toast.makeText(UserActivity.this, "Sessão Terminada", Toast.LENGTH_SHORT).show();
+                        FancyToast.makeText(UserActivity.this,"Sessão Terminada",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                         executeActivity(LoginActivity.class);
                         break;
                 }
@@ -200,6 +204,11 @@ public class UserActivity extends AppCompatActivity  {
                                     .show();
 
                         }
+                    }
+
+                    else {
+
+                        Toast.makeText(UserActivity.this, "Não há utilizador associado", Toast.LENGTH_LONG).show();
                     }
 
 
