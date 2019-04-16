@@ -1,6 +1,6 @@
 # CarSocial
 
-#Splash Screen & Login
+# Splash Screen & Login
 <div>
 <img src= "https://user-images.githubusercontent.com/36573496/56162644-65f08100-5fc4-11e9-9c63-70894f285cfc.jpeg" width="200" height="400"/> 
 <img src= "https://user-images.githubusercontent.com/36573496/56161940-bb2b9300-5fc2-11e9-980f-10c257e2aecb.jpeg" width="200" height="400"/>
@@ -8,7 +8,7 @@
   
 </div>
 
-#Home & Profile
+# Home & Profile
 <div>
 <img src= "https://user-images.githubusercontent.com/36573496/56172571-f6898a00-5fe1-11e9-8ac3-8dbee65c3fec.jpeg" width="200" height="400"/> 
 <img src= "https://user-images.githubusercontent.com/36573496/56172691-86c7cf00-5fe2-11e9-9f61-19cfb9c6b2a6.jpeg" width="200" height="400"/>
@@ -16,7 +16,7 @@
   
 </div>
 
-#Search for a ride
+# Search for a ride
 <div>
 <img src= "https://user-images.githubusercontent.com/36573496/56172718-a5c66100-5fe2-11e9-9116-26add78487b5.jpeg" width="200" height="400"/> 
 <img src= "https://user-images.githubusercontent.com/36573496/56172733-b8409a80-5fe2-11e9-86d7-c0b1dec2cac0.jpeg" width="200" height="400"/>
@@ -25,7 +25,7 @@
   
 </div>
 
-#Offer a ride
+# Offer a ride
 <div>
 <img src= "https://user-images.githubusercontent.com/36573496/56172782-f2aa3780-5fe2-11e9-9cfe-040085cc1153.jpeg" width="200" height="400"/> 
 <img src ="https://user-images.githubusercontent.com/36573496/56172796-035aad80-5fe3-11e9-98f7-d4e9cbcf3651.jpeg" width="200" height="400"/>
