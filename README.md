@@ -28,8 +28,8 @@
 #Offer a ride
 <div>
 <img src= "https://user-images.githubusercontent.com/36573496/56172782-f2aa3780-5fe2-11e9-9cfe-040085cc1153.jpeg" width="200" height="400"/> 
+<img src ="https://user-images.githubusercontent.com/36573496/56172796-035aad80-5fe3-11e9-98f7-d4e9cbcf3651.jpeg" width="200" height="400"/>
 <img src= "https://user-images.githubusercontent.com/36573496/56172804-11103300-5fe3-11e9-8a98-b44d44fbe475.jpeg" width="200" height="400"/>
-<img src ="https://user-images.githubusercontent.com/36573496/56172751-c55d8980-5fe2-11e9-8b05-24865a3d19dd.jpeg" width="200" height="400"/>
   <img src ="https://user-images.githubusercontent.com/36573496/56172821-22593f80-5fe3-11e9-9dd3-e951649cce92.jpeg" width="200" height="400"/>
   <img src ="https://user-images.githubusercontent.com/36573496/56172864-4452c200-5fe3-11e9-8bf8-97c34f5a0b22.jpeg" width="200" height="400"/>
   
